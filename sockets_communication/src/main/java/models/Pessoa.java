@@ -2,9 +2,9 @@ package models;
 
 public class Pessoa {
 
-    String nome;
-    String cpf;
-    String endereco;
+    private String nome;
+    private String cpf;
+    private String endereco;
 
     public Pessoa(String nome, String cpf, String endereco) {
         this.nome = nome;
