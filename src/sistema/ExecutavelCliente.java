@@ -1,3 +1,4 @@
+package sistema;
 import java.util.Scanner;
 
 import sockets.ConexaoCliente;
