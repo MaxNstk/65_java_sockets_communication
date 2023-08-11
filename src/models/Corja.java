@@ -2,13 +2,14 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Corja {
 
     private String nome;
     private String localEsconderijo;
     private int anoFundacao;
-    private List<Pessoa> membros;
+    private Map<String, Pessoa> membros;
 
     public Corja(String nome, String localEsconderijo, int anoFundacao) {
         this.nome = nome;
@@ -39,13 +40,30 @@ public class Corja {
         this.anoFundacao = anoFundacao;
     }
 
+    public void addPessoa(Pessoa pessoa) {
+    	membros.put(pessoa.getCpf(), pessoa);
+    }
+    
+    public boolean removePessoa(String cpf) {
+    	if (membros.get(cpf) != null) {
+    		membros.remove(cpf);
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+    }
+    
+    public Pessoa getPessoa(String cpf) {
+    	return membros.get(cpf);
+    }
+    
+    public List<Pessoa> listarPessoas() {
+        return new ArrayList<>(membros.values());
+    }
+    
     @Override
     public String toString() {
-        String retorno = this.nome+";"+this.localEsconderijo+";"+this.anoFundacao;
-        for (Pessoa membro: membros){
-            retorno += "\n";
-            retorno += "  "+membro.toString();
-        }
-        return retorno;
+        return this.nome+" - "+this.localEsconderijo+" - "+this.anoFundacao;
     }
 }
