@@ -8,29 +8,30 @@ public class ExecutavelCliente {
 	private static ConexaoCliente conexaoCliente = ConexaoCliente.getInstance();
 	
 	public static void main(String[] args) {
-		executaAplicacao();
+		if(conexaoCliente.getConection("127.0.0.1", 80)) {
+			executaAplicacao();
+		}
 	}
 
 	private static void executaAplicacao() {
-		if(conexaoCliente.getConection("127.0.0.1", 80)) {
 			
-			Scanner s = new Scanner(System.in);
-			System.out.println("Por favor, escolha uma entidade: "
-					+ "\n---------------------\n"
-					+ "(1) Pessoa \n"
-					+ "(2) Corja \n"
-					+ "\n---------------------\n"
-					+ "(3) Encerrar Conexão");
-			
-			int opcao = s.nextInt();
-			
-			if (opcao == 1)
-				executaPessoa();
-			else if(opcao == 2)
-				executaCorja();
-			else
-				conexaoCliente.closeConnection();
-		}
+		Scanner s = new Scanner(System.in);
+		System.out.println("Por favor, escolha uma entidade: "
+				+ "\n---------------------\n"
+				+ "(1) Pessoa \n"
+				+ "(2) Corja \n"
+				+ "\n---------------------\n"
+				+ "(3) Encerrar Conexão");
+		
+		int opcao = s.nextInt();
+		
+		if (opcao == 1)
+			executaPessoa();
+		else if(opcao == 2)
+			executaCorja();
+		else
+			conexaoCliente.closeConnection();
+	
 	}
 
 	private static void executaCorja() {
@@ -149,7 +150,7 @@ public class ExecutavelCliente {
 					return;
 			}	
 			
-			conexaoCliente.read();
+			System.out.println(conexaoCliente.read());
 			
 		} while (true);
 	}
@@ -236,7 +237,7 @@ public class ExecutavelCliente {
 					return;
 			}			
 			
-			conexaoCliente.read();
+			System.out.println(conexaoCliente.read());
 			
 		} while (true);
 	}
