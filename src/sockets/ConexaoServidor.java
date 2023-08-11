@@ -7,8 +7,10 @@ import java.net.Socket;
 
 import DAO.CorjaDao;
 import DAO.PessoaDao;
+import consts.PessoaConsts;
 
 import java.net.ServerSocket;
+
 
 public class ConexaoServidor implements ConexaoGenerica {
 
@@ -42,79 +44,72 @@ public class ConexaoServidor implements ConexaoGenerica {
             }
         }
     }
-
-    public String[] getConteudoMensagem(String[] mensagem){
-        String[] conteudoMensagem = new String[mensagem.length-2];
-        for(int i = 2; i <= mensagem.length-1; i++){
-            conteudoMensagem[i] = mensagem[i];
-        }
-        return conteudoMensagem;
-    }
-
+    
     // PADRÃO: METODO;objeto;atributos=valores;
     private void serializarRequisicao() {
         String[] mensagem = this.read().split(";");
 
-        if (mensagem[1].equalsIgnoreCase("Pessoa")){
+        if (mensagem[PessoaConsts.TABELA].equalsIgnoreCase("Pessoa")){
         	
         	PessoaDao pessoaDao = PessoaDao.getInstance();
         	
-            switch (mensagem[0]){
+            switch (mensagem[PessoaConsts.METODO]){
                 case "INSERT":
-                	pessoaDao.insert(getConteudoMensagem(mensagem));
+                	pessoaDao.insert(mensagem);
                     this.send("");
                     break;
                 case "UPDATE":
-                    this.send(pessoaDao.update(getConteudoMensagem(mensagem)));
+                    this.send(pessoaDao.update(mensagem));
                     break;
                 case "DELETE":
-                    this.send(pessoaDao.delete(getConteudoMensagem(mensagem)));
+                    this.send(pessoaDao.delete(mensagem));
                     break;
                 case "LIST":
-                    this.send(pessoaDao.list(getConteudoMensagem(mensagem)));
+                    this.send(pessoaDao.list());
                     break;
                 case "GET":
-                    this.send(pessoaDao.get(getConteudoMensagem(mensagem)));
+                    this.send(pessoaDao.get(mensagem));
                     break;
                 default:
-                    this.send("Método inválido: "+mensagem[0]);
+                    this.send("Método inválido: "+mensagem[PessoaConsts.METODO]);
             }
         }
-        if (mensagem[1].equalsIgnoreCase("Corja")){
+        else if (mensagem[PessoaConsts.TABELA].equalsIgnoreCase("Corja")){
         	
         	CorjaDao corjaDao = CorjaDao.getInstance();
         	
-            switch (mensagem[0]){
+            switch (mensagem[PessoaConsts.METODO]){
                 case "INSERT":
-                	corjaDao.insert(getConteudoMensagem(mensagem));
+                	corjaDao.insert(mensagem);
                     this.send("");
                     break;
                 case "UPDATE":
-                    this.send(corjaDao.update(getConteudoMensagem(mensagem)));
+                    this.send(corjaDao.update(mensagem));
                     break;
                 case "DELETE":
-                    this.send(corjaDao.delete(getConteudoMensagem(mensagem)));
+                    this.send(corjaDao.delete(mensagem));
                     break;
                 case "LIST":
-                    this.send(corjaDao.list(getConteudoMensagem(mensagem)));
+                    this.send(corjaDao.list(mensagem));
                     break;
                 case "GET":
-                    this.send(corjaDao.get(getConteudoMensagem(mensagem)));
+                    this.send(corjaDao.get(mensagem));
                     break;
                 case "ADDPESSOA":
-                    this.send(corjaDao.addPessoa(getConteudoMensagem(mensagem)));
+                    this.send(corjaDao.addPessoa(mensagem));
                     break;
                 case "REMOVEPESSOA":
-                    this.send(corjaDao.removePessoa(getConteudoMensagem(mensagem)));
+                    this.send(corjaDao.removePessoa(mensagem));
                     break;
                 case "LISTPESSOA":
-                	this.send(corjaDao.listarPessoas(getConteudoMensagem(mensagem)));
+                	this.send(corjaDao.listarPessoas(mensagem));
                 	break;
                 default:
-                    this.send("Método inválido: "+mensagem[0]);
+                    this.send("Método inválido: "+mensagem[PessoaConsts.METODO]);
             }
         }
-        this.send("Objeto inválido: "+mensagem[1]);
+        else
+            this.send("Objeto inválido: "+mensagem[PessoaConsts.TABELA]);
     }
 
     public void send(String command) {

@@ -186,7 +186,7 @@ public class ExecutavelCliente {
 					System.out.println("Informe o Endereço:");
 					endereco = s.next();
 					
-					comando = "INSERT;PESSOA;cpf="+cpf+"nome="+nome+"endereco="+endereco;
+					comando = "INSERT;PESSOA;cpf="+cpf+";nome="+nome+";endereco="+endereco;
 					conexaoCliente.send(comando);
 					
 			  		break;
@@ -200,7 +200,7 @@ public class ExecutavelCliente {
 					System.out.println("Informe o Endereço:");
 					endereco = s.next();
 					
-					comando = "UPDATE;PESSOA;cpf="+cpf+"nome="+nome+"endereco="+endereco;
+					comando = "UPDATE;PESSOA;cpf="+cpf+";nome="+nome+";endereco="+endereco;
 					conexaoCliente.send(comando);
 					
 					break;

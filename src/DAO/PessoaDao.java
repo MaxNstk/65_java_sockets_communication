@@ -3,6 +3,7 @@ package DAO;
 import java.util.HashMap;
 import java.util.Map;
 
+import consts.PessoaConsts;
 import models.Pessoa;
 
 public class PessoaDao {
@@ -20,9 +21,9 @@ public class PessoaDao {
     
     public void insert(String[] mensagem){
     	
-    	String cpf = mensagem[2].split("=")[1];
-    	String nome = mensagem[3].split("=")[1];
-    	String endereco = mensagem[4].split("=")[1];
+    	String cpf = mensagem[PessoaConsts.CPF].split("=")[1];
+    	String nome = mensagem[PessoaConsts.NOME].split("=")[1];
+    	String endereco = mensagem[PessoaConsts.ENDERECO].split("=")[1];
     	
     	Pessoa pessoa = new Pessoa(nome, cpf, endereco);
    
@@ -31,78 +32,57 @@ public class PessoaDao {
     
     public String update(String[] mensagem){
     	
-    	String cpf = mensagem[2].split("=")[1];
-    	String nome = mensagem[3].split("=")[1];
-    	String endereco = mensagem[4].split("=")[1];
+    	String cpf = mensagem[PessoaConsts.CPF].split("=")[1];
+    	String nome = mensagem[PessoaConsts.NOME].split("=")[1];
+    	String endereco = mensagem[PessoaConsts.ENDERECO].split("=")[1];
     	
     	Pessoa pessoa = pessoas.get(cpf);
-    	
-    	if(pessoa != null) {
-    		pessoa.setCpf(nome);
-    		pessoa.setEndereco(endereco);
-    		return "Pessoa atualizada com sucesso";
-    	}
-    	else {
-    		return "Pessoa não encontrada!";
-    	}
+
+		if (pessoa == null)
+			return "Pessoa nï¿½o encontrada!";
+		pessoa.setCpf(nome);
+		pessoa.setEndereco(endereco);
+		return "Pessoa atualizada com sucesso";
 	}
     
     public String delete(String[] mensagem){
     	
-    	String cpf = mensagem[2].split("=")[1];
-    	if(pessoas.size() > 0) {
-    		
-    		Pessoa pessoa = pessoas.get(cpf);
-    		
-    		if(pessoa != null) {
-    			pessoas.remove(cpf);
-    			return "Pessoa removida com sucesso";
-    		}
-    		else {
-        		return "Pessoa não encontrada";
-    		}
-    	}
-    	else {
-    		return "Sem pessoas cadastradas";	
-    	}
+    	String cpf = mensagem[PessoaConsts.CPF].split("=")[1];
+		if (pessoas.size() == 0)
+			return "Sem pessoas cadastradas";
+
+		if (pessoas.get(cpf) == null)
+			return "Pessoa nï¿½o encontrada";
+		pessoas.remove(cpf);
+		return "Pessoa removida com sucesso";
 	}
     
     public String get(String[] mensagem){
     	
-    	String cpf = mensagem[2].split("=")[1];
+    	String cpf = mensagem[PessoaConsts.CPF].split("=")[1];
     	
-    	if(pessoas.size() > 0) {
-    		
-    		Pessoa pessoa = pessoas.get(cpf);
-    		
-    		if(pessoa != null) {
-    			return pessoa.toString();
-    		}
-    		else {
-    			return "Pessoa não encontrada";
-    		}
-    	}
-    	else {
-        	return "Sem pessoas cadastradas";
-    	}
+    	if(pessoas.size() == 0)
+			return "Sem pessoas cadastradas";
+
+		Pessoa pessoa = pessoas.get(cpf);
+		if (pessoa == null)
+			return "Pessoa nï¿½o encontrada";
+
+		return pessoa.toString();
+
 	}
 	
-    public String list(String[] mensagem){
-    	
-    	String resposta = "";
-    	
-    	if(pessoas.size() > 0) {
-    		
-    		resposta += pessoas.size()+" \n";
-    		
-    		for (Map.Entry<String, Pessoa> pessoa : pessoas.entrySet()) {
-    			resposta += pessoa.getValue().getCpf()+";"+pessoa.getValue().getNome()+";"+pessoa.getValue().getEndereco()+" \n";
-    		}
-    		
-    		return resposta;
-    	}
-    	else {
-        	return "0";
-    	}
+    public String list(){
+		if(pessoas.size() == 0)
+			return "0";
+
+		String resposta = "";
+		resposta += pessoas.size()+" \n";
+		for (Map.Entry<String, Pessoa> pessoa : pessoas.entrySet()) {
+			resposta += pessoa.getValue().toString()+" \n";
+		}
+
+		return resposta;
+
     }
 }
