@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,7 @@ public class Corja {
     private String nome;
     private String localEsconderijo;
     private int anoFundacao;
-    private Map<String, Pessoa> membros;
+    private Map<String, Pessoa> membros = new HashMap<>();;
 
     public Corja(String nome, String localEsconderijo, int anoFundacao) {
         this.nome = nome;

@@ -1,13 +1,13 @@
 package DAO;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import models.Pessoa;
 
 public class PessoaDao {
 
-	private List<Pessoa> pessoas = new ArrayList<>();
+	private Map<String, Pessoa> pessoas = new HashMap<>();;
 	private static PessoaDao instance;
 	
 	private PessoaDao() {}

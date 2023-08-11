@@ -1,13 +1,13 @@
 package DAO;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import models.Corja;
 
 public class CorjaDao {
 	
-	private List<Corja> corjas = new ArrayList<>();
+	private Map<String, Corja> membros = new HashMap<>();;
 	private static CorjaDao instance;
 	
 	private CorjaDao() {}
