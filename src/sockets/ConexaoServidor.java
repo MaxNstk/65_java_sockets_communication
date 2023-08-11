@@ -18,6 +18,7 @@ public class ConexaoServidor implements ConexaoGenerica {
     private static ConexaoServidor instance;
 
     private ConexaoServidor() {
+        this.bancoDados = BancoEmMemoria.getInstance();
     }
 
     public static ConexaoServidor getInstance() {
@@ -47,10 +48,11 @@ public class ConexaoServidor implements ConexaoGenerica {
 
     private void serializarRequisicao() {
         String[] mensagem = this.read().split(";");
-
+        // TODO REMOVER DO ARRAY O INSERT
         switch (mensagem[0]){
             case "INSERT":
                 this.bancoDados.insertPessoa(mensagem);
+                this.send("");
                 break;
             case "UPDATE":
                 this.send(this.bancoDados.updatePessoa(mensagem));

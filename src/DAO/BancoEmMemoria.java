@@ -24,21 +24,38 @@ public class BancoEmMemoria {
     }
 
     public void insertPessoa(String[] mensagem) {
+
     }
 
     public String updatePessoa(String[] mensagem) {
-        return "";
+        String s = "";
+         for (String m:mensagem){
+             s+=m;
+         };
+         return s;
     }
 
     public String deletePessoa(String[] mensagem) {
-        return "";
+        String s = "";
+        for (String m:mensagem){
+            s+=m;
+        };
+        return s;
     }
 
     public String listPessoas(String[] mensagem) {
-        return "";
+        String s = "";
+        for (String m:mensagem){
+            s+=m;
+        };
+        return s;
     }
 
     public String getPessoa(String[] mensagem) {
-        return "";
+        String s = "";
+        for (String m:mensagem){
+            s+=m;
+        };
+        return s;
     }
 }
