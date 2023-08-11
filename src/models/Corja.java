@@ -41,6 +41,10 @@ public class Corja {
 
     @Override
     public String toString() {
-        String retorno = ;
+        String retorno = this.nome+";"+this.localEsconderijo+";"+this.anoFundacao;
+        for (Pessoa membro: membros){
+            retorno += "\n";
+            retorno += "  "+membro.toString();
+        }
     }
 }
