@@ -45,28 +45,69 @@ public class ConexaoServidor implements ConexaoGenerica {
         }
     }
 
+    public String[] getConteudoMensagem(String[] mensagem){
+        String[] conteudoMensagem = new String[mensagem.length-2];
+        for(int i = 2; i <= mensagem.length-1; i++){
+            conteudoMensagem[i] = mensagem[i];
+        }
+        return conteudoMensagem;
+    }
 
+    // PADRÃO: METODO;objeto;atributos=valores;
     private void serializarRequisicao() {
         String[] mensagem = this.read().split(";");
-        // TODO REMOVER DO ARRAY O INSERT
-        switch (mensagem[0]){
-            case "INSERT":
-                this.bancoDados.insertPessoa(mensagem);
-                this.send("");
-                break;
-            case "UPDATE":
-                this.send(this.bancoDados.updatePessoa(mensagem));
-                break;
-            case "DELETE":
-                this.send(this.bancoDados.deletePessoa(mensagem));
-                break;
-            case "LIST":
-                this.send(this.bancoDados.listPessoas(mensagem));
-                break;
-            case "GET":
-                this.send(this.bancoDados.getPessoa(mensagem));
-                break;
+
+        if (mensagem[1].equalsIgnoreCase("pessoa")){
+            switch (mensagem[0]){
+                case "INSERT":
+                    this.bancoDados.insertPessoa(getConteudoMensagem(mensagem));
+                    this.send("");
+                    break;
+                case "UPDATE":
+                    this.send(this.bancoDados.updatePessoa(getConteudoMensagem(mensagem)));
+                    break;
+                case "DELETE":
+                    this.send(this.bancoDados.deletePessoa(getConteudoMensagem(mensagem)));
+                    break;
+                case "LIST":
+                    this.send(this.bancoDados.listPessoas(getConteudoMensagem(mensagem)));
+                    break;
+                case "GET":
+                    this.send(this.bancoDados.getPessoa(getConteudoMensagem(mensagem)));
+                    break;
+                default:
+                    this.send("Método inválido: "+mensagem[0]);
+            }
         }
+        if (mensagem[1].equalsIgnoreCase("corja")){
+            switch (mensagem[0]){
+                case "INSERT":
+                    this.bancoDados.insertPessoa(getConteudoMensagem(mensagem));
+                    this.send("");
+                    break;
+                case "UPDATE":
+                    this.send(this.bancoDados.updateCorja(getConteudoMensagem(mensagem)));
+                    break;
+                case "DELETE":
+                    this.send(this.bancoDados.deleteCorja(getConteudoMensagem(mensagem)));
+                    break;
+                case "LIST":
+                    this.send(this.bancoDados.listCorjas(getConteudoMensagem(mensagem)));
+                    break;
+                case "GET":
+                    this.send(this.bancoDados.getCorja(getConteudoMensagem(mensagem)));
+                    break;
+                case "ADDPESSOA":
+                    this.send(this.bancoDados.AddPessoaCorja(getConteudoMensagem(mensagem)));
+                    break;
+                case "REMOVEPESSOA":
+                    this.send(this.bancoDados.RemovePessoaCorja(getConteudoMensagem(mensagem)));
+                    break;
+                default:
+                    this.send("Método inválido: "+mensagem[0]);
+            }
+        }
+        this.send("Objeto inválido: "+mensagem[1]);
     }
 
     public void send(String command) {

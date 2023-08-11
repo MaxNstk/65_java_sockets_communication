@@ -65,4 +65,28 @@ public class BancoEmMemoria {
         };
         return s;
     }
+
+    public String RemovePessoaCorja(String[] conteudoMensagem) {
+        return "";
+    }
+
+    public String AddPessoaCorja(String[] conteudoMensagem) {
+        return "";
+    }
+
+    public String getCorja(String[] conteudoMensagem) {
+        return "";
+    }
+
+    public String listCorjas(String[] conteudoMensagem) {
+        return "";
+    }
+
+    public String deleteCorja(String[] conteudoMensagem) {
+        return "";
+    }
+
+    public String updateCorja(String[] conteudoMensagem) {
+        return "";
+    }
 }
