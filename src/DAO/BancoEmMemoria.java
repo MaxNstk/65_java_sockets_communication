@@ -24,7 +24,14 @@ public class BancoEmMemoria {
     }
 
     public void insertPessoa(String[] mensagem) {
-
+        for (String atributo:mensagem){
+            String[] chaveValor = atributo.split("=");
+            try {
+                this.getClass().getDeclaredField(chaveValor[0]);
+            } catch (NoSuchFieldException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public String updatePessoa(String[] mensagem) {
