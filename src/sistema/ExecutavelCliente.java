@@ -67,7 +67,7 @@ public class ExecutavelCliente {
 					System.out.println("Informe o Ano de Fundação:");
 					anoFundacao = s.nextInt();
 					
-					comando = "INSERT;localEsconderijo="+localEsconderijo+"anoFundacao="+anoFundacao;
+					comando = "INSERT;CORJA;localEsconderijo="+localEsconderijo+"anoFundacao="+anoFundacao;
 					conexaoCliente.send(comando);
 					
 			  		break;
@@ -79,7 +79,7 @@ public class ExecutavelCliente {
 					System.out.println("Informe o Ano de Fundação:");
 					anoFundacao = s.nextInt();
 					
-					comando = "UPDATE;localEsconderijo="+localEsconderijo+"anoFundacao="+anoFundacao;
+					comando = "UPDATE;CORJA;localEsconderijo="+localEsconderijo+"anoFundacao="+anoFundacao;
 					conexaoCliente.send(comando);
 					
 					break;
@@ -89,7 +89,7 @@ public class ExecutavelCliente {
 					System.out.println("Informe o Local de Esconderijo:");
 					localEsconderijo = s.next();
 					
-					comando = "DELETE;localEsconderijo="+localEsconderijo;
+					comando = "DELETE;CORJA;localEsconderijo="+localEsconderijo;
 					conexaoCliente.send(comando);
 					
 					break;
@@ -99,14 +99,14 @@ public class ExecutavelCliente {
 					System.out.println("Informe o Local de Esconderijo:");
 					localEsconderijo = s.next();
 					
-					comando = "GET;localEsconderijo="+localEsconderijo;
+					comando = "GET;CORJA;localEsconderijo="+localEsconderijo;
 					conexaoCliente.send(comando);
 					
 					break;
 
 				case 5:
 					
-					comando = "LIST";
+					comando = "LIST;CORJA;";
 					conexaoCliente.send(comando);
 					
 					break;
@@ -118,7 +118,7 @@ public class ExecutavelCliente {
 					System.out.println("Informe o CPF da Pessoa:");
 					cpf = s.next();
 					
-					comando = "ADD;localEsconderijo="+localEsconderijo+"cpf="+cpf;
+					comando = "ADD;CORJA;localEsconderijo="+localEsconderijo+"cpf="+cpf;
 					conexaoCliente.send(comando);
 					
 					break;
@@ -130,7 +130,7 @@ public class ExecutavelCliente {
 					System.out.println("Informe o CPF da Pessoa:");
 					cpf = s.next();
 					
-					comando = "REMOVE;localEsconderijo="+localEsconderijo+"cpf="+cpf;
+					comando = "REMOVE;CORJA;localEsconderijo="+localEsconderijo+"cpf="+cpf;
 					conexaoCliente.send(comando);
 					
 					break;
@@ -140,7 +140,7 @@ public class ExecutavelCliente {
 					System.out.println("Informe o Local de Esconderijo:");
 					localEsconderijo = s.next();
 					
-					comando = "LIST_PESSOA;localEsconderijo="+localEsconderijo;
+					comando = "LIST_PESSOA;CORJA;localEsconderijo="+localEsconderijo;
 					conexaoCliente.send(comando);
 					
 					break;
@@ -200,7 +200,7 @@ public class ExecutavelCliente {
 					System.out.println("Informe o Endereço:");
 					endereco = s.next();
 					
-					comando = "UPDATE;cpf="+cpf+"nome="+nome+"endereco="+endereco;
+					comando = "UPDATE;PESSOA;cpf="+cpf+"nome="+nome+"endereco="+endereco;
 					conexaoCliente.send(comando);
 					
 					break;
@@ -210,7 +210,7 @@ public class ExecutavelCliente {
 					System.out.println("Informe o CPF:");
 					cpf = s.next();
 					
-					comando = "DELETE;cpf="+cpf;
+					comando = "DELETE;PESSOA;cpf="+cpf;
 					conexaoCliente.send(comando);
 					
 					break;
@@ -220,14 +220,14 @@ public class ExecutavelCliente {
 					System.out.println("Informe o CPF:");
 					cpf = s.next();
 					
-					comando = "GET;cpf="+cpf;
+					comando = "GET;PESSOA;cpf="+cpf;
 					conexaoCliente.send(comando);
 					
 					break;
 
 				case 5:
 					
-					comando = "LIST";
+					comando = "LIST;PESSOA;";
 					conexaoCliente.send(comando);
 					
 					break;
