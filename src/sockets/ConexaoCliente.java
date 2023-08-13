@@ -34,9 +34,8 @@ public class ConexaoCliente implements Conexao {
 	
 	public void send(String command) {
 		
-		OutputStream out;
 		try {
-			out = this.conexao.getOutputStream();
+			OutputStream out = this.conexao.getOutputStream();
 			out.write(command.getBytes());
 		} 
 		catch (Exception e) {
@@ -46,11 +45,10 @@ public class ConexaoCliente implements Conexao {
 	
 	public String read() {
 		
-		InputStream in;
 		byte[] dadosBrutos = new byte[1024];
 		
 		try {
-			in = this.conexao.getInputStream();
+			InputStream in = this.conexao.getInputStream();
 			int qtdBytesLidos = in.read(dadosBrutos);
 			String response = new String(dadosBrutos, 0, qtdBytesLidos);
 			

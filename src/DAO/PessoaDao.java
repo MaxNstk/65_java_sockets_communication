@@ -40,8 +40,10 @@ public class PessoaDao {
 
 		if (pessoa == null)
 			return "Pessoa n�o encontrada!";
-		pessoa.setCpf(nome);
+		
+		pessoa.setNome(nome);
 		pessoa.setEndereco(endereco);
+		
 		return "Pessoa atualizada com sucesso";
 	}
     
@@ -53,6 +55,7 @@ public class PessoaDao {
 
 		if (pessoas.get(cpf) == null)
 			return "Pessoa n�o encontrada";
+		
 		pessoas.remove(cpf);
 		return "Pessoa removida com sucesso";
 	}

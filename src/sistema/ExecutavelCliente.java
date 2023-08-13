@@ -255,7 +255,6 @@ public class ExecutavelCliente {
 					executaAplicacao();
 					return;
 			}			
-			
 			conexaoCliente.closeConnection();
 			
 		} while (true);
