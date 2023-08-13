@@ -20,7 +20,7 @@ public class ExecutavelCliente {
 				+ "\n---------------------\n"
 				+ "(1) Pessoa \n"
 				+ "(2) Corja \n"
-				+ "\n---------------------\n"
+				+ "---------------------\n"
 				+ "(3) Encerrar Conexão");
 		
 		int opcao = s.nextInt();

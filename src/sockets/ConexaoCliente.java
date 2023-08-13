@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-public class ConexaoCliente implements ConexaoGenerica {
+public class ConexaoCliente implements Conexao {
 
 	private static ConexaoCliente instance;
 	private Socket conexao;

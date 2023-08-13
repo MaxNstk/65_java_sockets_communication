@@ -12,7 +12,7 @@ import consts.PessoaConsts;
 import java.net.ServerSocket;
 
 
-public class ConexaoServidor implements ConexaoGenerica {
+public class ConexaoServidor implements Conexao {
 
     private ServerSocket serverSocket;
     private Socket conexao;
@@ -47,7 +47,9 @@ public class ConexaoServidor implements ConexaoGenerica {
     
     // PADRÃO: METODO;objeto;atributos=valores;
     private void serializarRequisicao() {
-        String[] mensagem = this.read().split(";");
+    	
+    	String dados = this.read();
+        String[] mensagem = dados.isEmpty() ? null : dados.split(";");
 
         if (mensagem[PessoaConsts.TABELA].equalsIgnoreCase("Pessoa")){
         	
