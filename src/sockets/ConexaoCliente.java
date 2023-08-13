@@ -28,7 +28,6 @@ public class ConexaoCliente implements Conexao {
 			return true;
 		} 
 		catch (Exception e) {
-			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -65,7 +64,7 @@ public class ConexaoCliente implements Conexao {
 	public boolean closeConnection() {
 		
 		try {
-			if(this.conexao != null)
+			if(!this.conexao.isClosed())
 				this.conexao.close();
 			return true;
 		}

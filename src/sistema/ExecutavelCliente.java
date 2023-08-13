@@ -8,9 +8,7 @@ public class ExecutavelCliente {
 	private static ConexaoCliente conexaoCliente = ConexaoCliente.getInstance();
 	
 	public static void main(String[] args) {
-		if(conexaoCliente.getConection("127.0.0.1", 80)) {
-			executaAplicacao();
-		}
+		executaAplicacao();
 	}
 
 	private static void executaAplicacao() {
@@ -31,7 +29,6 @@ public class ExecutavelCliente {
 			executaCorja();
 		else
 			conexaoCliente.closeConnection();
-	
 	}
 
 	private static void executaCorja() {
@@ -42,7 +39,7 @@ public class ExecutavelCliente {
 			String localEsconderijo;
 			String cpf;
 			int anoFundacao;
-			
+						
 			System.out.println("Por favor, escolha uma operação: "
 					+ "\n---------------------\n"
 					+ "(1) Inserir Corja \n"
@@ -58,7 +55,8 @@ public class ExecutavelCliente {
 					+ "(8) Voltar");
 			
 			int operacao = s.nextInt();
-						
+			conexaoCliente.getConection("127.0.0.1", 80);			
+			
 			switch (operacao) {
 				case 1: 
 					
@@ -82,6 +80,8 @@ public class ExecutavelCliente {
 					comando = "UPDATE;CORJA;localEsconderijo="+localEsconderijo+"anoFundacao="+anoFundacao;
 					conexaoCliente.send(comando);
 					
+					System.out.println(conexaoCliente.read());
+					
 					break;
 					
 				case 3:
@@ -92,6 +92,8 @@ public class ExecutavelCliente {
 					comando = "DELETE;CORJA;localEsconderijo="+localEsconderijo;
 					conexaoCliente.send(comando);
 					
+					System.out.println(conexaoCliente.read());
+					
 					break;
 					
 				case 4:
@@ -101,6 +103,8 @@ public class ExecutavelCliente {
 					
 					comando = "GET;CORJA;localEsconderijo="+localEsconderijo;
 					conexaoCliente.send(comando);
+					
+					System.out.println(conexaoCliente.read());
 					
 					break;
 
@@ -121,6 +125,8 @@ public class ExecutavelCliente {
 					comando = "ADD;CORJA;localEsconderijo="+localEsconderijo+"cpf="+cpf;
 					conexaoCliente.send(comando);
 					
+					System.out.println(conexaoCliente.read());
+					
 					break;
 					
 				case 7:
@@ -133,6 +139,8 @@ public class ExecutavelCliente {
 					comando = "REMOVE;CORJA;localEsconderijo="+localEsconderijo+"cpf="+cpf;
 					conexaoCliente.send(comando);
 					
+					System.out.println(conexaoCliente.read());
+					
 					break;
 					
 				case 8:
@@ -143,14 +151,16 @@ public class ExecutavelCliente {
 					comando = "LIST_PESSOA;CORJA;localEsconderijo="+localEsconderijo;
 					conexaoCliente.send(comando);
 					
+					System.out.println(conexaoCliente.read());
+					
 					break;
 					
 				default: 		
 					executaAplicacao();
-					return;
+					return;					
 			}	
 			
-			System.out.println(conexaoCliente.read());
+			conexaoCliente.closeConnection();
 			
 		} while (true);
 	}
@@ -175,7 +185,8 @@ public class ExecutavelCliente {
 					+ "(6) Voltar");
 			
 			int operacao = s.nextInt();
-						
+			conexaoCliente.getConection("127.0.0.1", 80);
+			
 			switch (operacao) {
 				case 1: 
 					
@@ -203,6 +214,8 @@ public class ExecutavelCliente {
 					comando = "UPDATE;PESSOA;cpf="+cpf+";nome="+nome+";endereco="+endereco;
 					conexaoCliente.send(comando);
 					
+					System.out.println(conexaoCliente.read());
+					
 					break;
 					
 				case 3:
@@ -212,6 +225,8 @@ public class ExecutavelCliente {
 					
 					comando = "DELETE;PESSOA;cpf="+cpf;
 					conexaoCliente.send(comando);
+					
+					System.out.println(conexaoCliente.read());
 					
 					break;
 					
@@ -223,12 +238,16 @@ public class ExecutavelCliente {
 					comando = "GET;PESSOA;cpf="+cpf;
 					conexaoCliente.send(comando);
 					
+					System.out.println(conexaoCliente.read());
+					
 					break;
 
 				case 5:
 					
 					comando = "LIST;PESSOA;";
 					conexaoCliente.send(comando);
+					
+					System.out.println(conexaoCliente.read());
 					
 					break;
 					
@@ -237,7 +256,7 @@ public class ExecutavelCliente {
 					return;
 			}			
 			
-			System.out.println(conexaoCliente.read());
+			conexaoCliente.closeConnection();
 			
 		} while (true);
 	}

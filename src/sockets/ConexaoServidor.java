@@ -50,7 +50,7 @@ public class ConexaoServidor implements Conexao {
     	
     	String dados = this.read();
         String[] mensagem = dados.isEmpty() ? null : dados.split(";");
-
+        
         if (mensagem[PessoaConsts.TABELA].equalsIgnoreCase("Pessoa")){
         	
         	PessoaDao pessoaDao = PessoaDao.getInstance();

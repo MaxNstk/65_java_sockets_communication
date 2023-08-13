@@ -71,7 +71,7 @@ public class PessoaDao {
 		return pessoa.toString();
 
 	}
-	
+	 
     public String list(){
 		if(pessoas.size() == 0)
 			return "0";
