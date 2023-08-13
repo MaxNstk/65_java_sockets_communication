@@ -3,10 +3,12 @@ package DAO;
 import java.util.HashMap;
 import java.util.Map;
 
+import consts.CorjaConsts;
+import consts.PessoaConsts;
 import models.Corja;
 
 public class CorjaDao {
-	
+
 	private Map<String, Corja> membros = new HashMap<>();;
 	private static CorjaDao instance;
 	
@@ -19,6 +21,10 @@ public class CorjaDao {
     }
     
     public void insert(String[] mensagem){
+
+//        String cpf = mensagem[CorjaConsts.NOME].split("=")[1];
+//        String nome = mensagem[CorjaConsts.ANO_FUNDACAO].split("=")[1];
+//        String endereco = mensagem[PessoaConsts.ENDERECO].split("=")[1]
 
 	}
     
