@@ -105,10 +105,10 @@ public class CorjaDao {
 		if (corja == null)
 			return "Corja n�o encontrada";
     	    	
-    	if(pessoaDao.pessoas.size() == 0)
+    	if(pessoaDao.getPessoas().size() == 0)
 			return "Sem pessoas cadastradas";
 
-		Pessoa pessoa = pessoaDao.pessoas.get(cpf);
+		Pessoa pessoa = pessoaDao.getPessoas().get(cpf);
 		if (pessoa == null)
 			return "Pessoa n�o encontrada";
 		

@@ -8,7 +8,7 @@ import models.Pessoa;
 
 public class PessoaDao {
 
-	public Map<String, Pessoa> pessoas = new HashMap<>();;
+	private Map<String, Pessoa> pessoas = new HashMap<>();;
 	private static PessoaDao instance;
 	
 	private PessoaDao() {}
@@ -17,6 +17,10 @@ public class PessoaDao {
         if (instance == null)
             instance = new PessoaDao();
         return instance;
+    }
+    
+    public Map<String, Pessoa> getPessoas(){
+    	return this.pessoas;
     }
     
     public void insert(String[] mensagem){
