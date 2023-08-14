@@ -8,7 +8,7 @@ import models.Pessoa;
 
 public class PessoaDao {
 
-	private Map<String, Pessoa> pessoas = new HashMap<>();;
+	public Map<String, Pessoa> pessoas = new HashMap<>();;
 	private static PessoaDao instance;
 	
 	private PessoaDao() {}
@@ -76,6 +76,7 @@ public class PessoaDao {
 	}
 	 
     public String list(){
+
 		if(pessoas.size() == 0)
 			return "0";
 
@@ -86,6 +87,5 @@ public class PessoaDao {
 		}
 
 		return resposta;
-
     }
 }
