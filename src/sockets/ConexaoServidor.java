@@ -49,11 +49,11 @@ public class ConexaoServidor implements Conexao {
     	String dados = this.read();
         String[] mensagem = dados.isEmpty() ? null : dados.split(";");
         
-        if (mensagem[0].equalsIgnoreCase("Pessoa")){
+        if (mensagem[1].equalsIgnoreCase("Pessoa")){
         	
         	PessoaDao pessoaDao = PessoaDao.getInstance();
         	
-            switch (mensagem[1]){
+            switch (mensagem[0]){
                 case "INSERT":
                 	pessoaDao.insert(mensagem);
                     this.send("");
