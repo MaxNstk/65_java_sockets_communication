@@ -65,6 +65,6 @@ public class Corja {
     
     @Override
     public String toString() {
-        return this.nome+" - "+this.localEsconderijo+" - "+this.anoFundacao;
+        return this.nome+";"+this.localEsconderijo+";"+this.anoFundacao;
     }
 }

@@ -28,7 +28,7 @@ public class CorjaDao {
        int anoFundacao = Integer.parseInt(mensagem[4].split("=")[1]);
        
 	   Corja corja = new Corja(nome, localEsconderijo, anoFundacao);
-	   corjas.put(localEsconderijo, corja);
+	   corjas.put(nome, corja);
 	}
     
     public String update(String[] mensagem){
@@ -37,13 +37,13 @@ public class CorjaDao {
         String localEsconderijo = mensagem[3].split("=")[1];
         int anoFundacao = Integer.parseInt(mensagem[4].split("=")[1]);
     	
-    	Corja corja = corjas.get(localEsconderijo);
+    	Corja corja = corjas.get(nome);
 
 		if (corja == null)
 			return "Corja n�o encontrada!";
 		
 		corja.setNome(nome);
-		corja.setLocalEsconderijo(nome);
+		corja.setLocalEsconderijo(localEsconderijo);
 		corja.setAnoFundacao(anoFundacao);
 		
 		return "Corja atualizada com sucesso";
@@ -51,26 +51,26 @@ public class CorjaDao {
     
     public String delete(String[] mensagem){
     	
-    	String localEsconderijo = mensagem[3].split("=")[1];
+    	String nome = mensagem[2].split("=")[1];
     	
 		if (corjas.size() == 0)
 			return "Sem corjas cadastradas";
 
-		if (corjas.get(localEsconderijo) == null)
+		if (corjas.get(nome) == null)
 			return "Corja n�o encontrada";
 		
-		corjas.remove(localEsconderijo);
+		corjas.remove(nome);
 		return "Corja removida com sucesso";
 	}
     
     public String get(String[] mensagem){
     	
-    	String localEsconderijo = mensagem[3].split("=")[1];
+    	String nome = mensagem[2].split("=")[1];
     	
     	if(corjas.size() == 0)
 			return "Sem corjas cadastradas";
 
-		Corja corja = corjas.get(localEsconderijo);
+		Corja corja = corjas.get(nome);
 		if (corja == null)
 			return "Corja n�o encontrada";
 
@@ -92,14 +92,14 @@ public class CorjaDao {
     
     public String addPessoa(String[] mensagem) {
     	
-    	String localEsconderijo = mensagem[2].split("=")[1];
+    	String nome = mensagem[2].split("=")[1];
     	String cpf = mensagem[3].split("=")[1];
     	PessoaDao pessoaDao = PessoaDao.getInstance();
     	
     	if(corjas.size() == 0)
 			return "Sem corjas cadastradas";
 
-		Corja corja = corjas.get(localEsconderijo);
+		Corja corja = corjas.get(nome);
 		if (corja == null)
 			return "Corja n�o encontrada";
     	    	
@@ -117,13 +117,13 @@ public class CorjaDao {
     
     public String removePessoa(String[] mensagem) {
     	
-    	String localEsconderijo = mensagem[2].split("=")[1];
+    	String nome = mensagem[2].split("=")[1];
     	String cpf = mensagem[3].split("=")[1];
     	
     	if(corjas.size() == 0)
 			return "Sem corjas cadastradas";
 
-		Corja corja = corjas.get(localEsconderijo);
+		Corja corja = corjas.get(nome);
 		if (corja == null)
 			return "Corja n�o encontrada";
     	
