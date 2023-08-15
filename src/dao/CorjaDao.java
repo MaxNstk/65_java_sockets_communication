@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -112,7 +112,7 @@ public class CorjaDao {
 		
 		membros.put(cpf, pessoa);
 		
-		return "Pessoa: "+pessoa.toString()+" adicionada à Corja: "+corja.toString();
+		return "Pessoa: "+pessoa.toString()+" adicionada ï¿½ Corja: "+corja.toString();
     }
     
     public String removePessoa(String[] mensagem) {
@@ -135,7 +135,7 @@ public class CorjaDao {
 		
 		membros.remove(cpf);
 		
-		return "Pessoa desvínculada com sucesso";
+		return "Pessoa desvï¿½nculada com sucesso";
     }
     
     public String listarPessoas(String[] mensagem) {

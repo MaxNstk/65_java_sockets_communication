@@ -8,7 +8,6 @@ public class ConexaoCliente implements Conexao {
 
 	private static ConexaoCliente instance;
 	private Socket conexao;
-	
 	private ConexaoCliente() {}
 	
 	public static ConexaoCliente getInstance() {

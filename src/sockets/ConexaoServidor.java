@@ -5,8 +5,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-import DAO.CorjaDao;
-import DAO.PessoaDao;
+import dao.CorjaDao;
+import dao.PessoaDao;
+
 import java.net.ServerSocket;
 
 
@@ -14,9 +15,7 @@ public class ConexaoServidor implements Conexao {
 
     private ServerSocket serverSocket;
     private Socket conexao;
-
     private static ConexaoServidor instance;
-
     private ConexaoServidor() {}
 
     public static ConexaoServidor getInstance() {
@@ -43,7 +42,6 @@ public class ConexaoServidor implements Conexao {
         }
     }
     
-    // PADRÃO: METODO;objeto;atributos=valores;
     private void serializarRequisicao() {
     	
     	String dados = this.read();

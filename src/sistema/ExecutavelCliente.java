@@ -18,8 +18,7 @@ public class ExecutavelCliente {
 				+ "\n---------------------\n"
 				+ "(1) Pessoa \n"
 				+ "(2) Corja \n"
-				+ "---------------------\n"
-				+ "(3) Encerrar Conexão");
+				+ "---------------------");
 		
 		int opcao = s.nextInt();
 		
@@ -27,8 +26,6 @@ public class ExecutavelCliente {
 			executaPessoa();
 		else if(opcao == 2)
 			executaCorja();
-		else
-			conexaoCliente.closeConnection();
 	}
 
 	private static void executaCorja() {
@@ -41,7 +38,7 @@ public class ExecutavelCliente {
 			String cpf;
 			int anoFundacao;
 						
-			System.out.println("Por favor, escolha uma operação: "
+			System.out.println("Por favor, escolha uma operaï¿½ï¿½o: "
 					+ "\n---------------------\n"
 					+ "(1) Inserir Corja \n"
 					+ "(2) Atualizar Corja \n"
@@ -49,9 +46,9 @@ public class ExecutavelCliente {
 					+ "(4) Carregar Corja \n"
 					+ "(5) Listar Corjas "
 					+ "\n---------------------\n"
-					+ "(6) Adicionar Pessoa à  Corja \n"
+					+ "(6) Adicionar Pessoa ï¿½ Corja \n"
 					+ "(7) Remover Pessoa da Corja "
-					+ "(7) Listar Pessoa Relacionadas à  Corja "
+					+ "(7) Listar Pessoa Relacionadas ï¿½ Corja "
 					+ "\n---------------------\n"
 					+ "(8) Voltar");
 			
@@ -65,7 +62,7 @@ public class ExecutavelCliente {
 					nome = s.next();
 					System.out.println("Informe o Local de Esconderijo:");
 					localEsconderijo = s.next();
-					System.out.println("Informe o Ano de Fundação:");
+					System.out.println("Informe o Ano de Fundaï¿½ï¿½o:");
 					anoFundacao = s.nextInt();
 					
 					comando = "INSERT;CORJA;nome="+nome+";localEsconderijo="+localEsconderijo+";anoFundacao="+anoFundacao;
@@ -79,7 +76,7 @@ public class ExecutavelCliente {
 					nome = s.next();
 					System.out.println("Informe o Local de Esconderijo:");
 					localEsconderijo = s.next();
-					System.out.println("Informe o Ano de Fundação:");
+					System.out.println("Informe o Ano de Fundaï¿½ï¿½o:");
 					anoFundacao = s.nextInt();
 					
 					comando = "UPDATE;CORJA;nome="+nome+";localEsconderijo="+localEsconderijo+";anoFundacao="+anoFundacao;
@@ -179,7 +176,7 @@ public class ExecutavelCliente {
 			String nome;
 			String endereco;
 			
-			System.out.println("Por favor, escolha uma operação: "
+			System.out.println("Por favor, escolha uma operaï¿½ï¿½o: "
 					+ "\n---------------------\n"
 					+ "(1) Inserir Pessoa \n"
 					+ "(2) Atualizar Pessoa \n"
@@ -199,7 +196,7 @@ public class ExecutavelCliente {
 					cpf = s.next();
 					System.out.println("Informe o Nome:");
 					nome = s.next();
-					System.out.println("Informe o Endereço:");
+					System.out.println("Informe o Endereï¿½o:");
 					endereco = s.next();
 					
 					comando = "INSERT;PESSOA;cpf="+cpf+";nome="+nome+";endereco="+endereco;
@@ -213,7 +210,7 @@ public class ExecutavelCliente {
 					cpf = s.next();
 					System.out.println("Informe o Nome:");
 					nome = s.next();
-					System.out.println("Informe o Endereço:");
+					System.out.println("Informe o Endereï¿½o:");
 					endereco = s.next();
 					
 					comando = "UPDATE;PESSOA;cpf="+cpf+";nome="+nome+";endereco="+endereco;
