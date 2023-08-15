@@ -3,7 +3,6 @@ package DAO;
 import java.util.HashMap;
 import java.util.Map;
 
-import consts.PessoaConsts;
 import models.Pessoa;
 
 public class PessoaDao {
@@ -25,9 +24,9 @@ public class PessoaDao {
     
     public void insert(String[] mensagem){
     	
-    	String cpf = mensagem[PessoaConsts.CPF].split("=")[1];
-    	String nome = mensagem[PessoaConsts.NOME].split("=")[1];
-    	String endereco = mensagem[PessoaConsts.ENDERECO].split("=")[1];
+    	String cpf = mensagem[2].split("=")[1];
+    	String nome = mensagem[3].split("=")[1];
+    	String endereco = mensagem[4].split("=")[1];
     	
     	Pessoa pessoa = new Pessoa(nome, cpf, endereco);
    
@@ -36,9 +35,9 @@ public class PessoaDao {
     
     public String update(String[] mensagem){
     	
-    	String cpf = mensagem[PessoaConsts.CPF].split("=")[1];
-    	String nome = mensagem[PessoaConsts.NOME].split("=")[1];
-    	String endereco = mensagem[PessoaConsts.ENDERECO].split("=")[1];
+    	String cpf = mensagem[2].split("=")[1];
+    	String nome = mensagem[3].split("=")[1];
+    	String endereco = mensagem[4].split("=")[1];
     	
     	Pessoa pessoa = pessoas.get(cpf);
 
@@ -53,7 +52,7 @@ public class PessoaDao {
     
     public String delete(String[] mensagem){
     	
-    	String cpf = mensagem[PessoaConsts.CPF].split("=")[1];
+    	String cpf = mensagem[2].split("=")[1];
 		if (pessoas.size() == 0)
 			return "Sem pessoas cadastradas";
 
@@ -66,7 +65,7 @@ public class PessoaDao {
     
     public String get(String[] mensagem){
     	
-    	String cpf = mensagem[PessoaConsts.CPF].split("=")[1];
+    	String cpf = mensagem[2].split("=")[1];
     	
     	if(pessoas.size() == 0)
 			return "Sem pessoas cadastradas";

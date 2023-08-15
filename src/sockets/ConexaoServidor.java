@@ -7,8 +7,6 @@ import java.net.Socket;
 
 import DAO.CorjaDao;
 import DAO.PessoaDao;
-import consts.PessoaConsts;
-
 import java.net.ServerSocket;
 
 
@@ -51,11 +49,11 @@ public class ConexaoServidor implements Conexao {
     	String dados = this.read();
         String[] mensagem = dados.isEmpty() ? null : dados.split(";");
         
-        if (mensagem[PessoaConsts.TABELA].equalsIgnoreCase("Pessoa")){
+        if (mensagem[0].equalsIgnoreCase("Pessoa")){
         	
         	PessoaDao pessoaDao = PessoaDao.getInstance();
         	
-            switch (mensagem[PessoaConsts.METODO]){
+            switch (mensagem[1]){
                 case "INSERT":
                 	pessoaDao.insert(mensagem);
                     this.send("");
@@ -73,14 +71,14 @@ public class ConexaoServidor implements Conexao {
                     this.send(pessoaDao.get(mensagem));
                     break;
                 default:
-                    this.send("Método inválido: "+mensagem[PessoaConsts.METODO]);
+                    this.send("Método inválido: "+mensagem[0]);
             }
         }
-        else if (mensagem[PessoaConsts.TABELA].equalsIgnoreCase("Corja")){
+        else if (mensagem[1].equalsIgnoreCase("Corja")){
         	
         	CorjaDao corjaDao = CorjaDao.getInstance();
         	
-            switch (mensagem[PessoaConsts.METODO]){
+            switch (mensagem[0]){
                 case "INSERT":
                 	corjaDao.insert(mensagem);
                     this.send("");
@@ -107,11 +105,11 @@ public class ConexaoServidor implements Conexao {
                 	this.send(corjaDao.listarPessoas(mensagem));
                 	break;
                 default:
-                    this.send("Método inválido: "+mensagem[PessoaConsts.METODO]);
+                    this.send("Método inválido: "+mensagem[0]);
             }
         }
         else
-            this.send("Objeto inválido: "+mensagem[PessoaConsts.TABELA]);
+            this.send("Objeto inválido: "+mensagem[1]);
     }
 
     public void send(String command) {

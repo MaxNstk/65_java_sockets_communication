@@ -3,8 +3,6 @@ package DAO;
 import java.util.HashMap;
 import java.util.Map;
 
-import consts.CorjaConsts;
-import consts.PessoaConsts;
 import models.Corja;
 import models.Pessoa;
 
@@ -25,9 +23,9 @@ public class CorjaDao {
     
     public void insert(String[] mensagem){
 
-       String nome = mensagem[CorjaConsts.NOME].split("=")[1];
-       String localEsconderijo = mensagem[CorjaConsts.LOCAL_ESCONDERIJO].split("=")[1];
-       int anoFundacao = Integer.parseInt(mensagem[CorjaConsts.ANO_FUNDACAO].split("=")[1]);
+       String nome = mensagem[2].split("=")[1];
+       String localEsconderijo = mensagem[3].split("=")[1];
+       int anoFundacao = Integer.parseInt(mensagem[4].split("=")[1]);
        
 	   Corja corja = new Corja(nome, localEsconderijo, anoFundacao);
 	   corjas.put(localEsconderijo, corja);
@@ -35,9 +33,9 @@ public class CorjaDao {
     
     public String update(String[] mensagem){
     	
-        String nome = mensagem[CorjaConsts.NOME].split("=")[1];
-        String localEsconderijo = mensagem[CorjaConsts.LOCAL_ESCONDERIJO].split("=")[1];
-        int anoFundacao = Integer.parseInt(mensagem[CorjaConsts.ANO_FUNDACAO].split("=")[1]);
+        String nome = mensagem[2].split("=")[1];
+        String localEsconderijo = mensagem[3].split("=")[1];
+        int anoFundacao = Integer.parseInt(mensagem[4].split("=")[1]);
     	
     	Corja corja = corjas.get(localEsconderijo);
 
@@ -53,7 +51,7 @@ public class CorjaDao {
     
     public String delete(String[] mensagem){
     	
-    	String localEsconderijo = mensagem[CorjaConsts.LOCAL_ESCONDERIJO].split("=")[1];
+    	String localEsconderijo = mensagem[3].split("=")[1];
     	
 		if (corjas.size() == 0)
 			return "Sem corjas cadastradas";
@@ -67,7 +65,7 @@ public class CorjaDao {
     
     public String get(String[] mensagem){
     	
-    	String localEsconderijo = mensagem[CorjaConsts.LOCAL_ESCONDERIJO].split("=")[1];
+    	String localEsconderijo = mensagem[3].split("=")[1];
     	
     	if(corjas.size() == 0)
 			return "Sem corjas cadastradas";
@@ -94,8 +92,8 @@ public class CorjaDao {
     
     public String addPessoa(String[] mensagem) {
     	
-    	String localEsconderijo = mensagem[CorjaConsts.LOCAL_ESCONDERIJO].split("=")[1];
-    	String cpf = mensagem[PessoaConsts.CPF].split("=")[1];
+    	String localEsconderijo = mensagem[2].split("=")[1];
+    	String cpf = mensagem[3].split("=")[1];
     	PessoaDao pessoaDao = PessoaDao.getInstance();
     	
     	if(corjas.size() == 0)
@@ -119,8 +117,8 @@ public class CorjaDao {
     
     public String removePessoa(String[] mensagem) {
     	
-    	String localEsconderijo = mensagem[CorjaConsts.LOCAL_ESCONDERIJO].split("=")[1];
-    	String cpf = mensagem[PessoaConsts.CPF].split("=")[1];
+    	String localEsconderijo = mensagem[2].split("=")[1];
+    	String cpf = mensagem[3].split("=")[1];
     	
     	if(corjas.size() == 0)
 			return "Sem corjas cadastradas";
