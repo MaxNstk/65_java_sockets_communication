@@ -14,8 +14,8 @@ public class ExecutavelCliente {
 	private static void executaAplicacao() {
 			
 		Scanner s = new Scanner(System.in);
-		System.out.println("Por favor, escolha uma entidade: "
-				+ "\n---------------------\n"
+		System.out.println("Por favor, escolha uma entidade: \n"
+				+ "---------------------\n"
 				+ "(1) Pessoa \n"
 				+ "(2) Corja \n"
 				+ "---------------------");
@@ -47,12 +47,18 @@ public class ExecutavelCliente {
 					+ "(5) Listar Corjas "
 					+ "\n---------------------\n"
 					+ "(6) Adicionar Pessoa a Corja \n"
-					+ "(7) Remover Pessoa da Corja "
-					+ "(7) Listar Pessoa Relacionadas a Corja "
+					+ "(7) Remover Pessoa da Corja \n"
+					+ "(8) Listar Pessoa Relacionadas a Corja "
 					+ "\n---------------------\n"
-					+ "(8) Voltar");
+					+ "(9) Voltar");
 			
 			int operacao = s.nextInt();
+			
+			if(operacao == 9) {
+				executaAplicacao();
+				return;
+			}
+			
 			conexaoCliente.getConection("127.0.0.1", 80);			
 			
 			switch (operacao) {
@@ -115,6 +121,8 @@ public class ExecutavelCliente {
 					comando = "LIST;CORJA;";
 					conexaoCliente.send(comando);
 					
+					System.out.println(conexaoCliente.read());
+					
 					break;
 					
 				case 6:
@@ -155,11 +163,7 @@ public class ExecutavelCliente {
 					
 					System.out.println(conexaoCliente.read());
 					
-					break;
-					
-				default: 		
-					executaAplicacao();
-					return;					
+					break;				
 			}	
 			
 			conexaoCliente.closeConnection();
@@ -187,6 +191,12 @@ public class ExecutavelCliente {
 					+ "(6) Voltar");
 			
 			int operacao = s.nextInt();
+			
+			if(operacao == 6) {
+				executaAplicacao();
+				return;
+			}
+			
 			conexaoCliente.getConection("127.0.0.1", 80);
 			
 			switch (operacao) {
@@ -251,11 +261,8 @@ public class ExecutavelCliente {
 					
 					System.out.println(conexaoCliente.read());
 					
-					break;
+					break;	
 					
-				default: 		
-					executaAplicacao();
-					return;
 			}			
 			conexaoCliente.closeConnection();
 			

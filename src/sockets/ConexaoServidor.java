@@ -30,10 +30,9 @@ public class ConexaoServidor implements Conexao {
         this.serverSocket.setReuseAddress(true);
 
         while (true) {
-            System.out.println("aguardando conexao");
             try {
                 this.conexao = serverSocket.accept();
-                System.out.println("Conexao estabelecida com o host: " + this.conexao.getInetAddress().getHostAddress());
+                //System.out.println("Conexao estabelecida com o host: " + this.conexao.getInetAddress().getHostAddress());
                 this.serializarRequisicao();
 
             } catch (IOException e) {

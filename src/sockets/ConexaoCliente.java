@@ -21,9 +21,7 @@ public class ConexaoCliente implements Conexao {
 				
 		try {
 			closeConnection();
-			this.conexao = new Socket(host,porta);
-			System.out.println("Conectado!");
-			
+			this.conexao = new Socket(host,porta);			
 			return true;
 		} 
 		catch (Exception e) {

@@ -101,14 +101,14 @@ public class CorjaDao {
 
 		Corja corja = corjas.get(nome);
 		if (corja == null)
-			return "Corja nï¿½o encontrada";
+			return "Corja não encontrada";
     	    	
     	if(pessoaDao.getPessoas().size() == 0)
 			return "Sem pessoas cadastradas";
 
 		Pessoa pessoa = pessoaDao.getPessoas().get(cpf);
 		if (pessoa == null)
-			return "Pessoa nï¿½o encontrada";
+			return "Pessoa não encontrada";
 		
 		membros.put(cpf, pessoa);
 		
@@ -125,17 +125,17 @@ public class CorjaDao {
 
 		Corja corja = corjas.get(nome);
 		if (corja == null)
-			return "Corja nï¿½o encontrada";
+			return "Corja não encontrada";
     	
 		if (membros.size() == 0)
 			return "Sem pessoas vinculadas";
 
 		if (membros.get(cpf) == null)
-			return "Pessoa nï¿½o encontrada";
+			return "Pessoa não encontrada";
 		
 		membros.remove(cpf);
 		
-		return "Pessoa desvï¿½nculada com sucesso";
+		return "Pessoa desvinculada com sucesso";
     }
     
     public String listarPessoas(String[] mensagem) {
