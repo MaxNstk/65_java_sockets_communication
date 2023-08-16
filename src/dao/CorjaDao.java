@@ -40,7 +40,7 @@ public class CorjaDao {
     	Corja corja = corjas.get(nome);
 
 		if (corja == null)
-			return "Corja nï¿½o encontrada!";
+			return "Corja não encontrada!";
 		
 		corja.setNome(nome);
 		corja.setLocalEsconderijo(localEsconderijo);
@@ -57,7 +57,7 @@ public class CorjaDao {
 			return "Sem corjas cadastradas";
 
 		if (corjas.get(nome) == null)
-			return "Corja nï¿½o encontrada";
+			return "Corja não encontrada";
 		
 		corjas.remove(nome);
 		return "Corja removida com sucesso";
@@ -72,7 +72,7 @@ public class CorjaDao {
 
 		Corja corja = corjas.get(nome);
 		if (corja == null)
-			return "Corja nï¿½o encontrada";
+			return "Corja não encontrada";
 
 		return corja.toString();
 	}

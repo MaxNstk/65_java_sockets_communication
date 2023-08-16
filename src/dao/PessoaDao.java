@@ -42,7 +42,7 @@ public class PessoaDao {
     	Pessoa pessoa = pessoas.get(cpf);
 
 		if (pessoa == null)
-			return "Pessoa nï¿½o encontrada!";
+			return "Pessoa não encontrada!";
 		
 		pessoa.setNome(nome);
 		pessoa.setEndereco(endereco);
@@ -57,7 +57,7 @@ public class PessoaDao {
 			return "Sem pessoas cadastradas";
 
 		if (pessoas.get(cpf) == null)
-			return "Pessoa nï¿½o encontrada";
+			return "Pessoa não encontrada";
 		
 		pessoas.remove(cpf);
 		return "Pessoa removida com sucesso";
@@ -72,7 +72,7 @@ public class PessoaDao {
 
 		Pessoa pessoa = pessoas.get(cpf);
 		if (pessoa == null)
-			return "Pessoa nï¿½o encontrada";
+			return "Pessoa não encontrada";
 
 		return pessoa.toString();
 

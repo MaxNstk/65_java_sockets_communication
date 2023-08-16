@@ -30,10 +30,10 @@ public class ConexaoServidor implements Conexao {
         this.serverSocket.setReuseAddress(true);
 
         while (true) {
-            System.out.println("aguardando conexão");
+            System.out.println("aguardando conexao");
             try {
                 this.conexao = serverSocket.accept();
-                System.out.println("Conexao extabelecida com o host: " + this.conexao.getInetAddress().getHostAddress());
+                System.out.println("Conexao estabelecida com o host: " + this.conexao.getInetAddress().getHostAddress());
                 this.serializarRequisicao();
 
             } catch (IOException e) {
@@ -69,7 +69,7 @@ public class ConexaoServidor implements Conexao {
                     this.send(pessoaDao.get(mensagem));
                     break;
                 default:
-                    this.send("Método inválido: "+mensagem[0]);
+                    this.send("Metodo invalido: "+mensagem[0]);
             }
         }
         else if (mensagem[1].equalsIgnoreCase("Corja")){
@@ -103,11 +103,11 @@ public class ConexaoServidor implements Conexao {
                 	this.send(corjaDao.listarPessoas(mensagem));
                 	break;
                 default:
-                    this.send("Método inválido: "+mensagem[0]);
+                    this.send("Metodo invalido: "+mensagem[0]);
             }
         }
         else
-            this.send("Objeto inválido: "+mensagem[1]);
+            this.send("Objeto invalido: "+mensagem[1]);
     }
 
     public void send(String command) {
