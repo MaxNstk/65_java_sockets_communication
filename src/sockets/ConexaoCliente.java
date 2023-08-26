@@ -6,16 +6,7 @@ import java.net.Socket;
 
 public class ConexaoCliente implements Conexao {
 
-	private static ConexaoCliente instance;
 	private Socket conexao;
-	private ConexaoCliente() {}
-	
-	public static ConexaoCliente getInstance() {
-		if(instance == null)
-			instance = new ConexaoCliente();
-		
-		return instance;
-	}
 	
 	public boolean getConection(String host, int porta){
 				

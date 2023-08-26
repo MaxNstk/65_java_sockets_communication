@@ -5,7 +5,7 @@ import sockets.ConexaoCliente;
 
 public class ExecutavelCliente {
 	
-	private static ConexaoCliente conexaoCliente = ConexaoCliente.getInstance();
+	private static ConexaoCliente conexaoCliente = new ConexaoCliente();
 	
 	public static void main(String[] args) {
 		executaAplicacao();
@@ -14,13 +14,15 @@ public class ExecutavelCliente {
 	private static void executaAplicacao() {
 			
 		Scanner s = new Scanner(System.in);
-		System.out.println("Por favor, escolha uma entidade: \n"
+		System.out.println("Por favor, selecione uma opcao: \n"
 				+ "---------------------\n"
 				+ "(1) Pessoa \n"
 				+ "(2) Saqueador \n"
 				+ "(3) Trapaceiro \n"
 				+ "---------------------\n"
 				+ "(4) Corja \n"
+				+ "---------------------\n"
+				+ "Para finalizar a execucao do programa digite qualquer carater nao citado acima."
 				+ "---------------------");
 		
 		int opcao = s.nextInt();
@@ -38,6 +40,8 @@ public class ExecutavelCliente {
 			case 4:
 				executaCorja();
 				break;
+			default:
+				return;
 		}
 	}
 
