@@ -37,6 +37,6 @@ public class Pessoa {
     }
 
     public String toString(){
-        return this.cpf+";"+this.nome+";"+this.endereco;
+        return this.cpf+";"+this.nome+";"+this.endereco+";";
     }
 }

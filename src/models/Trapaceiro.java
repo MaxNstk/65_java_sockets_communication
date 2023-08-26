@@ -16,4 +16,9 @@ public class Trapaceiro extends Pessoa{
 	public void setHabilidade(String habilidade) {
 		this.habilidade = habilidade;
 	}
+	
+	@Override
+	public String toString() {
+		return super.toString()+this.habilidade;
+	}
 }

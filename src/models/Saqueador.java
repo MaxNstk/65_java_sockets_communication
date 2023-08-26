@@ -16,4 +16,9 @@ public class Saqueador extends Pessoa{
 	public void setValorSaqueado(double valorSaqueado) {
 		this.valorSaqueado = valorSaqueado;
 	}
+	
+	@Override
+	public String toString() {
+		return super.toString()+this.valorSaqueado;
+	}
 }

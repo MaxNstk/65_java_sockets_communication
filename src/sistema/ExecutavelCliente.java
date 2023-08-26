@@ -19,7 +19,7 @@ public class ExecutavelCliente {
 				+ "(1) Pessoa \n"
 				+ "(2) Saqueador \n"
 				+ "(3) Trapaceiro \n"
-				+ "---------------------"
+				+ "---------------------\n"
 				+ "(4) Corja \n"
 				+ "---------------------");
 		

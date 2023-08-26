@@ -27,7 +27,7 @@ public class TrapaceiroDao {
     	String cpf = mensagem[2].split("=")[1];
     	String nome = mensagem[3].split("=")[1];
     	String endereco = mensagem[4].split("=")[1];
-    	String habilidade = mensagem[4].split("=")[1];
+    	String habilidade = mensagem[5].split("=")[1];
     	
     	Trapaceiro trapaceiro = new Trapaceiro(nome, cpf, endereco, habilidade);
    
