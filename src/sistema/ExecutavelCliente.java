@@ -49,7 +49,9 @@ public class ExecutavelCliente {
 			String localEsconderijo;
 			String nome;
 			String cpf;
+			String entidade;
 			int anoFundacao;
+			int opcaoEntidade;
 						
 			System.out.println("Por favor, escolha uma operacao: "
 					+ "\n---------------------\n"
@@ -59,9 +61,9 @@ public class ExecutavelCliente {
 					+ "(4) Carregar Corja \n"
 					+ "(5) Listar Corjas "
 					+ "\n---------------------\n"
-					+ "(6) Adicionar Pessoa a Corja \n"
-					+ "(7) Remover Pessoa da Corja \n"
-					+ "(8) Listar Pessoa Relacionadas a Corja "
+					+ "(6) Adicionar Entidade a Corja \n"
+					+ "(7) Remover Entidade da Corja \n"
+					+ "(8) Listar Entidades Relacionadas a Corja "
 					+ "\n---------------------\n"
 					+ "(9) Voltar");
 			
@@ -144,8 +146,17 @@ public class ExecutavelCliente {
 					nome = s.next();
 					System.out.println("Informe o CPF da Pessoa:");
 					cpf = s.next();
+					System.out.println("Selecione uma entidade: \n (1) Pessoa \n (2) Saqueador \n (3) Trapaceiro");
+					opcaoEntidade = s.nextInt();
 					
-					comando = "ADDPESSOA;CORJA;nome="+nome+";cpf="+cpf;
+					if(opcaoEntidade == 1)
+						entidade = "PESSOA";
+					else if(opcaoEntidade == 2)
+						entidade = "SAQUEADOR";
+					else
+						entidade = "TRAPACEIRO";
+					
+					comando = "ADDPESSOA;CORJA;"+entidade+";nome="+nome+";cpf="+cpf;
 					conexaoCliente.send(comando);
 					
 					System.out.println(conexaoCliente.read());
@@ -153,13 +164,22 @@ public class ExecutavelCliente {
 					break;
 					
 				case 7:
-					
+
 					System.out.println("Informe o Nome:");
 					nome = s.next();
 					System.out.println("Informe o CPF da Pessoa:");
 					cpf = s.next();
+					System.out.println("Selecione uma entidade: \n (1) Pessoa \n (2) Saqueador \n (3) Trapaceiro");
+					opcaoEntidade = s.nextInt();
 					
-					comando = "REMOVEPESSOA;CORJA;nome="+nome+";cpf="+cpf;
+					if(opcaoEntidade == 1)
+						entidade = "PESSOA";
+					else if(opcaoEntidade == 2)
+						entidade = "SAQUEADOR";
+					else
+						entidade = "TRAPACEIRO";
+					
+					comando = "REMOVEPESSOA;CORJA;"+entidade+";nome="+nome+";cpf="+cpf;
 					conexaoCliente.send(comando);
 					
 					System.out.println(conexaoCliente.read());
