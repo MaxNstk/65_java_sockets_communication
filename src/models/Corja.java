@@ -65,6 +65,13 @@ public class Corja {
     
     @Override
     public String toString() {
-        return this.nome+";"+this.localEsconderijo+";"+this.anoFundacao;
+    	
+    	String resposta = this.nome+";"+this.localEsconderijo+";"+this.anoFundacao+" \n";
+    	
+    	for (Map.Entry<String, Pessoa> pessoa : membros.entrySet()) {
+    		resposta += " - "+pessoa.getValue().toString()+" \n";
+    	}
+    	
+        return resposta;
     }
 }
