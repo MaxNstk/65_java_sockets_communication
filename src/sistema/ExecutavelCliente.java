@@ -63,9 +63,8 @@ public class ExecutavelCliente {
 					+ "(4) Carregar Corja \n"
 					+ "(5) Listar Corjas "
 					+ "\n---------------------\n"
-					+ "(6) Adicionar Entidade a Corja \n"
-					+ "(7) Remover Entidade da Corja \n"
-					+ "(8) Listar Entidades Relacionadas a Corja "
+					+ "(6) Adicionar Pessoa a Corja \n"
+					+ "(7) Remover Pessoa da Corja \n"
 					+ "\n---------------------\n"
 					+ "(9) Voltar");
 			
@@ -186,19 +185,7 @@ public class ExecutavelCliente {
 					
 					System.out.println(conexaoCliente.read());
 					
-					break;
-					
-				case 8:
-					
-					System.out.println("Informe o Nome:");
-					nome = s.next();
-					
-					comando = "LISTPESSOA;CORJA;nome="+nome;
-					conexaoCliente.send(comando);
-					
-					System.out.println(conexaoCliente.read());
-					
-					break;				
+					break;			
 			}	
 			
 			conexaoCliente.closeConnection();

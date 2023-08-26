@@ -111,7 +111,7 @@ public class CorjaDao {
 		
 		corja.getMembros().put(cpf, pessoa);
 		
-		return "Pessoa: "+pessoa.toString()+" adicionada ï¿½ Corja: "+corja.toString();
+		return "Pessoa: "+pessoa.toString()+" adicionada a Corja: "+corja.getNome();
     }
     
     public String removePessoa(String[] mensagem) {
@@ -135,30 +135,5 @@ public class CorjaDao {
 		corja.getMembros().remove(cpf);
 		
 		return "Pessoa desvinculada com sucesso";
-    }
-    
-    public String listarPessoas(String[] mensagem) {
-		
-    	String nome = mensagem[2].split("=")[1];
-    	
-    	if(corjas.size() == 0)
-			return "Sem corjas cadastradas";
-
-		Corja corja = corjas.get(nome);
-		if (corja == null)
-			return "Corja não encontrada";
-    	
-		Map<String, Pessoa> membros = corja.getMembros();
-		
-    	if(membros.size() == 0)
-			return "0";
-
-		String resposta = "";
-		resposta += membros.size()+" \n";
-		for (Map.Entry<String, Pessoa> pessoa : membros.entrySet()) {
-			resposta += pessoa.getValue().toString()+" \n";
-		}
-
-		return resposta;
     }
 }

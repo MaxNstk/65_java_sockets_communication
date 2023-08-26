@@ -148,9 +148,6 @@ public class ConexaoServidor implements Conexao {
                 case "REMOVEPESSOA":
                     this.send(corjaDao.removePessoa(mensagem));
                     break;
-                case "LISTPESSOA":
-                	this.send(corjaDao.listarPessoas(mensagem));
-                	break;
                 default:
                     this.send("Metodo invalido: "+mensagem[0]);
             }
