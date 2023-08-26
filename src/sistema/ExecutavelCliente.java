@@ -17,15 +17,28 @@ public class ExecutavelCliente {
 		System.out.println("Por favor, escolha uma entidade: \n"
 				+ "---------------------\n"
 				+ "(1) Pessoa \n"
-				+ "(2) Corja \n"
+				+ "(2) Saqueador \n"
+				+ "(3) Trapaceiro \n"
+				+ "---------------------"
+				+ "(4) Corja \n"
 				+ "---------------------");
 		
 		int opcao = s.nextInt();
 		
-		if (opcao == 1)
-			executaPessoa();
-		else if(opcao == 2)
-			executaCorja();
+		switch (opcao) {
+			case 1: 
+				executaPessoa();
+				break;
+			case 2: 
+				executaSaqueador();
+				break;
+			case 3:
+				executaTrapaceiro();
+				break;
+			case 4:
+				executaCorja();
+				break;
+		}
 	}
 
 	private static void executaCorja() {
@@ -257,6 +270,212 @@ public class ExecutavelCliente {
 				case 5:
 					
 					comando = "LIST;PESSOA;";
+					conexaoCliente.send(comando);
+					
+					System.out.println(conexaoCliente.read());
+					
+					break;	
+					
+			}			
+			conexaoCliente.closeConnection();
+			
+		} while (true);
+	}
+
+	private static void executaTrapaceiro() {
+		Scanner s = new Scanner(System.in);
+		
+		do {
+			String comando;
+			String cpf;
+			String nome;
+			String endereco;
+			String habilidade;
+			
+			System.out.println("Por favor, escolha uma operacao: "
+					+ "\n---------------------\n"
+					+ "(1) Inserir Trapaceiro \n"
+					+ "(2) Atualizar Trapaceiro \n"
+					+ "(3) Excluir Trapaceiro \n"
+					+ "(4) Carregar Trapaceiro \n"
+					+ "(5) Listar Trapaceiros "
+					+ "\n---------------------\n"
+					+ "(6) Voltar");
+			
+			int operacao = s.nextInt();
+			
+			if(operacao == 6) {
+				executaAplicacao();
+				return;
+			}
+			
+			conexaoCliente.getConection("127.0.0.1", 80);
+			
+			switch (operacao) {
+				case 1: 
+					
+					System.out.println("Informe o CPF:");
+					cpf = s.next();
+					System.out.println("Informe o Nome:");
+					nome = s.next();
+					System.out.println("Informe o Endereco:");
+					endereco = s.next();
+					System.out.println("Informe a Habilidade:");
+					habilidade = s.next();
+					
+					comando = "INSERT;TRAPACEIRO;cpf="+cpf+";nome="+nome+";endereco="+endereco+";habilidade="+habilidade;
+					conexaoCliente.send(comando);
+					
+			  		break;
+			  
+				case 2: 
+					
+					System.out.println("Informe o CPF:");
+					cpf = s.next();
+					System.out.println("Informe o Nome:");
+					nome = s.next();
+					System.out.println("Informe o Endereco:");
+					endereco = s.next();
+					System.out.println("Informe a Habilidade:");
+					habilidade = s.next();
+					
+					comando = "UPDATE;TRAPACEIRO;cpf="+cpf+";nome="+nome+";endereco="+endereco+";habilidade="+habilidade;
+					conexaoCliente.send(comando);
+					
+					System.out.println(conexaoCliente.read());
+					
+					break;
+					
+				case 3:
+					
+					System.out.println("Informe o CPF:");
+					cpf = s.next();
+					
+					comando = "DELETE;TRAPACEIRO;cpf="+cpf;
+					conexaoCliente.send(comando);
+					
+					System.out.println(conexaoCliente.read());
+					
+					break;
+					
+				case 4:
+					
+					System.out.println("Informe o CPF:");
+					cpf = s.next();
+					
+					comando = "GET;TRAPACEIRO;cpf="+cpf;
+					conexaoCliente.send(comando);
+					
+					System.out.println(conexaoCliente.read());
+					
+					break;
+
+				case 5:
+					
+					comando = "LIST;TRAPACEIRO;";
+					conexaoCliente.send(comando);
+					
+					System.out.println(conexaoCliente.read());
+					
+					break;	
+					
+			}			
+			conexaoCliente.closeConnection();
+			
+		} while (true);
+	}
+	
+	private static void executaSaqueador() {
+		Scanner s = new Scanner(System.in);
+		
+		do {
+			String comando;
+			String cpf;
+			String nome;
+			String endereco;
+			double valorSaqueado;
+			
+			System.out.println("Por favor, escolha uma operacao: "
+					+ "\n---------------------\n"
+					+ "(1) Inserir Saqueador \n"
+					+ "(2) Atualizar Saqueador \n"
+					+ "(3) Excluir Saqueador \n"
+					+ "(4) Carregar Saqueador \n"
+					+ "(5) Listar Saqueadores "
+					+ "\n---------------------\n"
+					+ "(6) Voltar");
+			
+			int operacao = s.nextInt();
+			
+			if(operacao == 6) {
+				executaAplicacao();
+				return;
+			}
+			
+			conexaoCliente.getConection("127.0.0.1", 80);
+			
+			switch (operacao) {
+				case 1: 
+					
+					System.out.println("Informe o CPF:");
+					cpf = s.next();
+					System.out.println("Informe o Nome:");
+					nome = s.next();
+					System.out.println("Informe o Endereco:");
+					endereco = s.next();
+					System.out.println("Informe o Valor Saqueado:");
+					valorSaqueado = s.nextDouble();
+					
+					comando = "INSERT;SAQUEADOR;cpf="+cpf+";nome="+nome+";endereco="+endereco+";valorSaqueado="+valorSaqueado;
+					conexaoCliente.send(comando);
+					
+			  		break;
+			  
+				case 2: 
+					
+					System.out.println("Informe o CPF:");
+					cpf = s.next();
+					System.out.println("Informe o Nome:");
+					nome = s.next();
+					System.out.println("Informe o Endereco:");
+					endereco = s.next();
+					System.out.println("Informe o Valor Saqueado:");
+					valorSaqueado = s.nextDouble();
+					
+					comando = "UPDATE;SAQUEADOR;cpf="+cpf+";nome="+nome+";endereco="+endereco+";valorSaqueado="+valorSaqueado;
+					conexaoCliente.send(comando);
+					
+					System.out.println(conexaoCliente.read());
+					
+					break;
+					
+				case 3:
+					
+					System.out.println("Informe o CPF:");
+					cpf = s.next();
+					
+					comando = "DELETE;SAQUEADOR;cpf="+cpf;
+					conexaoCliente.send(comando);
+					
+					System.out.println(conexaoCliente.read());
+					
+					break;
+					
+				case 4:
+					
+					System.out.println("Informe o CPF:");
+					cpf = s.next();
+					
+					comando = "GET;SAQUEADOR;cpf="+cpf;
+					conexaoCliente.send(comando);
+					
+					System.out.println(conexaoCliente.read());
+					
+					break;
+
+				case 5:
+					
+					comando = "LIST;SAQUEADOR;";
 					conexaoCliente.send(comando);
 					
 					System.out.println(conexaoCliente.read());

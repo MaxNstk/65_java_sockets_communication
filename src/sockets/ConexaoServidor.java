@@ -7,6 +7,8 @@ import java.net.Socket;
 
 import dao.CorjaDao;
 import dao.PessoaDao;
+import dao.SaqueadorDao;
+import dao.TrapaceiroDao;
 
 import java.net.ServerSocket;
 
@@ -32,7 +34,6 @@ public class ConexaoServidor implements Conexao {
         while (true) {
             try {
                 this.conexao = serverSocket.accept();
-                //System.out.println("Conexao estabelecida com o host: " + this.conexao.getInetAddress().getHostAddress());
                 this.serializarRequisicao();
 
             } catch (IOException e) {
@@ -66,6 +67,55 @@ public class ConexaoServidor implements Conexao {
                     break;
                 case "GET":
                     this.send(pessoaDao.get(mensagem));
+                    break;
+                default:
+                    this.send("Metodo invalido: "+mensagem[0]);
+            }
+        }
+        else if (mensagem[1].equalsIgnoreCase("Trapaceiro")){
+        	TrapaceiroDao trapaceiroDao = TrapaceiroDao.getInstance();
+        	
+            switch (mensagem[0]){
+                case "INSERT":
+                	trapaceiroDao.insert(mensagem);
+                    this.send("");
+                    break;
+                case "UPDATE":
+                    this.send(trapaceiroDao.update(mensagem));
+                    break;
+                case "DELETE":
+                    this.send(trapaceiroDao.delete(mensagem));
+                    break;
+                case "LIST":
+                    this.send(trapaceiroDao.list());
+                    break;
+                case "GET":
+                    this.send(trapaceiroDao.get(mensagem));
+                    break;
+                default:
+                    this.send("Metodo invalido: "+mensagem[0]);
+            }	
+        }
+        else if (mensagem[1].equalsIgnoreCase("Saqueador")){
+        	
+        	SaqueadorDao saqueadorDao = SaqueadorDao.getInstance();
+        	
+            switch (mensagem[0]){
+                case "INSERT":
+                	saqueadorDao.insert(mensagem);
+                    this.send("");
+                    break;
+                case "UPDATE":
+                    this.send(saqueadorDao.update(mensagem));
+                    break;
+                case "DELETE":
+                    this.send(saqueadorDao.delete(mensagem));
+                    break;
+                case "LIST":
+                    this.send(saqueadorDao.list());
+                    break;
+                case "GET":
+                    this.send(saqueadorDao.get(mensagem));
                     break;
                 default:
                     this.send("Metodo invalido: "+mensagem[0]);
