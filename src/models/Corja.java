@@ -59,9 +59,9 @@ public class Corja {
     	return membros.get(cpf);
     }
     
-    public List<Pessoa> listarPessoas() {
-        return new ArrayList<>(membros.values());
-    }
+    public Map<String, Pessoa> getMembros() {
+		return membros;
+	}
     
     @Override
     public String toString() {

@@ -9,7 +9,6 @@ import models.Pessoa;
 public class CorjaDao {
 
 	private Map<String, Corja> corjas = new HashMap<>();
-	private Map<String, Pessoa> membros = new HashMap<>();
 	
 	private static CorjaDao instance;
 	
@@ -110,7 +109,7 @@ public class CorjaDao {
 		if (pessoa == null)
 			return "Pessoa não encontrada";
 		
-		membros.put(cpf, pessoa);
+		corja.getMembros().put(cpf, pessoa);
 		
 		return "Pessoa: "+pessoa.toString()+" adicionada ï¿½ Corja: "+corja.toString();
     }
@@ -127,18 +126,29 @@ public class CorjaDao {
 		if (corja == null)
 			return "Corja não encontrada";
     	
-		if (membros.size() == 0)
+		if(corja.getMembros().size() == 0)
 			return "Sem pessoas vinculadas";
 
-		if (membros.get(cpf) == null)
+		if(corja.getMembros().get(cpf) == null)
 			return "Pessoa não encontrada";
 		
-		membros.remove(cpf);
+		corja.getMembros().remove(cpf);
 		
 		return "Pessoa desvinculada com sucesso";
     }
     
     public String listarPessoas(String[] mensagem) {
+		
+    	String nome = mensagem[2].split("=")[1];
+    	
+    	if(corjas.size() == 0)
+			return "Sem corjas cadastradas";
+
+		Corja corja = corjas.get(nome);
+		if (corja == null)
+			return "Corja não encontrada";
+    	
+		Map<String, Pessoa> membros = corja.getMembros();
 		
     	if(membros.size() == 0)
 			return "0";
