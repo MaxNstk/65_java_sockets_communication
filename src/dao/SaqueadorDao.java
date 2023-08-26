@@ -7,7 +7,7 @@ import models.Saqueador;
 
 public class SaqueadorDao {
 
-	private Map<String, Saqueador> saqueadores = new HashMap<>();;
+	private Map<String, Saqueador> saqueadores = new HashMap<>();
 	private static SaqueadorDao instance;
 	
 	private SaqueadorDao() {}

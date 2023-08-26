@@ -7,7 +7,7 @@ import models.Trapaceiro;
 
 public class TrapaceiroDao {
 
-	private Map<String, Trapaceiro> trapaceiros = new HashMap<>();;
+	private Map<String, Trapaceiro> trapaceiros = new HashMap<>();
 	private static TrapaceiroDao instance;
 	
 	private TrapaceiroDao() {}

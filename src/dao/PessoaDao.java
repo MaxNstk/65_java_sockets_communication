@@ -7,7 +7,7 @@ import models.Pessoa;
 
 public class PessoaDao {
 
-	private Map<String, Pessoa> pessoas = new HashMap<>();;
+	private Map<String, Pessoa> pessoas = new HashMap<>();
 	private static PessoaDao instance;
 	
 	private PessoaDao() {}

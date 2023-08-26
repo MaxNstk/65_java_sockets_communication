@@ -21,8 +21,6 @@ public class ExecutavelCliente {
 				+ "(3) Trapaceiro \n"
 				+ "---------------------\n"
 				+ "(4) Corja \n"
-				+ "---------------------\n"
-				+ "Para finalizar a execucao do programa digite qualquer carater nao citado acima."
 				+ "---------------------");
 		
 		int opcao = s.nextInt();
