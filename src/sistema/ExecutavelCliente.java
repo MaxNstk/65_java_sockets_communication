@@ -199,6 +199,7 @@ public class ExecutavelCliente {
 			int operacao = s.nextInt();
 			
 			if(operacao == 6) {
+				executaAplicacao(ipHost);
 				return;
 			}
 			
