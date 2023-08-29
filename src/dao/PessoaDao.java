@@ -102,23 +102,20 @@ public class PessoaDao {
     
     public String get(String[] mensagem){
     	
-    	String entidade = mensagem[1].split("=")[1];
     	String cpf = mensagem[2].split("=")[1];
     	
     	if(pessoas.size() == 0)
 			return "Sem pessoas cadastradas";
 		
-    	final Pessoa pessoa;
-    	
-    	if(entidade.equalsIgnoreCase("Trapaceiro")) 
-    		pessoa = (Trapaceiro) pessoas.get(cpf);
-    	else 
-    		pessoa = (Saqueador) pessoas.get(cpf);
+    	Pessoa pessoa = pessoas.get(cpf);
 
 		if (pessoa == null)
 			return "Pessoa não encontrada";
 		
-		return pessoa.toString();
+		if(pessoa.getClass().equals(Trapaceiro.class))
+			return ((Trapaceiro) pessoa).toString();
+		else
+			return ((Saqueador) pessoa).toString();
 	}
 	 
     public String list(){

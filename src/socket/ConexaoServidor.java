@@ -7,9 +7,8 @@ import java.net.Socket;
 
 import dao.CorjaDao;
 import dao.PessoaDao;
-
+ 
 import java.net.ServerSocket;
-
 
 public class ConexaoServidor implements Conexao {
 
@@ -43,7 +42,7 @@ public class ConexaoServidor implements Conexao {
     private void serializarRequisicao() {
     	
     	String dados = this.read();
-        String[] mensagem = dados.isEmpty() ? null : dados.split(";");
+        String[] mensagem = dados.split(";");
         
         if (mensagem[1].equalsIgnoreCase("Trapaceiro")){
         	PessoaDao pessoaDao = PessoaDao.getInstance();
