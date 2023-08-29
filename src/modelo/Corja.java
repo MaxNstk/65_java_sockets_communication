@@ -1,4 +1,4 @@
-package models;
+package modelo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,10 +66,13 @@ public class Corja {
     @Override
     public String toString() {
     	
-    	String resposta = this.nome+";"+this.localEsconderijo+";"+this.anoFundacao+" \n";
+    	String resposta = this.nome+";"+this.localEsconderijo+";"+this.anoFundacao;
     	
     	for (Map.Entry<String, Pessoa> pessoa : membros.entrySet()) {
-    		resposta += " - "+pessoa.getValue().toString()+" \n";
+			if (pessoa.getValue().getClass().equals(Trapaceiro.class)) 
+				resposta += "\n - "+((Trapaceiro) pessoa.getValue()).toString();
+            else 
+            	resposta += "\n - "+((Saqueador) pessoa.getValue()).toString();
     	}
     	
         return resposta;

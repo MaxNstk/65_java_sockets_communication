@@ -1,4 +1,4 @@
-package models;
+package modelo;
 
 public class Trapaceiro extends Pessoa{
 

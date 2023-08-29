@@ -1,4 +1,4 @@
-package sockets;
+package socket;
 
 public interface Conexao {
 

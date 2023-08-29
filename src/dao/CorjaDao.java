@@ -3,8 +3,8 @@ package dao;
 import java.util.HashMap;
 import java.util.Map;
 
-import models.Corja;
-import models.Pessoa;
+import modelo.Corja;
+import modelo.Pessoa;
 
 public class CorjaDao {
 

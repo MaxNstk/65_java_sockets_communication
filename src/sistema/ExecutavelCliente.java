@@ -1,49 +1,50 @@
 package sistema;
 import java.util.Scanner;
 
-import sockets.ConexaoCliente;
+import socket.ConexaoCliente;
 
 public class ExecutavelCliente {
 	
 	private static ConexaoCliente conexaoCliente = new ConexaoCliente();
 	
 	public static void main(String[] args) {
-		executaAplicacao();
+		
+		Scanner s = new Scanner(System.in);
+		System.out.println("Informe o IPV4 do servidor");
+		String ipHost = s.next();
+		
+		executaAplicacao(ipHost);
 	}
 
-	private static void executaAplicacao() {
-			
+	private static void executaAplicacao(String ipHost) {
+		
 		Scanner s = new Scanner(System.in);
 		System.out.println("Por favor, selecione uma opcao: \n"
 				+ "---------------------\n"
-				+ "(1) Pessoa \n"
-				+ "(2) Saqueador \n"
-				+ "(3) Trapaceiro \n"
+				+ "(1) Saqueador \n"
+				+ "(2) Trapaceiro \n"
 				+ "---------------------\n"
-				+ "(4) Corja \n"
+				+ "(3) Corja \n"
 				+ "---------------------");
 		
 		int opcao = s.nextInt();
 		
 		switch (opcao) {
 			case 1: 
-				executaPessoa();
+				executaSaqueador(ipHost);
 				break;
-			case 2: 
-				executaSaqueador();
+			case 2:
+				executaTrapaceiro(ipHost);
 				break;
 			case 3:
-				executaTrapaceiro();
-				break;
-			case 4:
-				executaCorja();
+				executaCorja(ipHost);
 				break;
 			default:
 				return;
 		}
 	}
 
-	private static void executaCorja() {
+	private static void executaCorja(String ipHost) {
 		Scanner s = new Scanner(System.in);
 		
 		do {
@@ -65,17 +66,17 @@ public class ExecutavelCliente {
 					+ "\n---------------------\n"
 					+ "(6) Adicionar Pessoa a Corja \n"
 					+ "(7) Remover Pessoa da Corja \n"
-					+ "\n---------------------\n"
-					+ "(9) Voltar");
+					+ "---------------------\n"
+					+ "(8) Voltar");
 			
 			int operacao = s.nextInt();
 			
-			if(operacao == 9) {
-				executaAplicacao();
+			if(operacao == 8) {
+				executaAplicacao(ipHost);
 				return;
 			}
 			
-			conexaoCliente.getConection("127.0.0.1", 80);			
+			conexaoCliente.getConection(ipHost, 80);			
 			
 			switch (operacao) {
 				case 1: 
@@ -147,17 +148,8 @@ public class ExecutavelCliente {
 					nome = s.next();
 					System.out.println("Informe o CPF da Pessoa:");
 					cpf = s.next();
-					System.out.println("Selecione uma entidade: \n (1) Pessoa \n (2) Saqueador \n (3) Trapaceiro");
-					opcaoEntidade = s.nextInt();
 					
-					if(opcaoEntidade == 1)
-						entidade = "PESSOA";
-					else if(opcaoEntidade == 2)
-						entidade = "SAQUEADOR";
-					else
-						entidade = "TRAPACEIRO";
-					
-					comando = "ADDPESSOA;CORJA;"+entidade+";nome="+nome+";cpf="+cpf;
+					comando = "ADDPESSOA;CORJA;nome="+nome+";cpf="+cpf;
 					conexaoCliente.send(comando);
 					
 					System.out.println(conexaoCliente.read());
@@ -170,17 +162,8 @@ public class ExecutavelCliente {
 					nome = s.next();
 					System.out.println("Informe o CPF da Pessoa:");
 					cpf = s.next();
-					System.out.println("Selecione uma entidade: \n (1) Pessoa \n (2) Saqueador \n (3) Trapaceiro");
-					opcaoEntidade = s.nextInt();
 					
-					if(opcaoEntidade == 1)
-						entidade = "PESSOA";
-					else if(opcaoEntidade == 2)
-						entidade = "SAQUEADOR";
-					else
-						entidade = "TRAPACEIRO";
-					
-					comando = "REMOVEPESSOA;CORJA;"+entidade+";nome="+nome+";cpf="+cpf;
+					comando = "REMOVEPESSOA;CORJA;nome="+nome+";cpf="+cpf;
 					conexaoCliente.send(comando);
 					
 					System.out.println(conexaoCliente.read());
@@ -193,105 +176,7 @@ public class ExecutavelCliente {
 		} while (true);
 	}
 
-	private static void executaPessoa() {
-		Scanner s = new Scanner(System.in);
-		
-		do {
-			String comando;
-			String cpf;
-			String nome;
-			String endereco;
-			
-			System.out.println("Por favor, escolha uma operacao: "
-					+ "\n---------------------\n"
-					+ "(1) Inserir Pessoa \n"
-					+ "(2) Atualizar Pessoa \n"
-					+ "(3) Excluir Pessoa \n"
-					+ "(4) Carregar Pessoa \n"
-					+ "(5) Listar Pessoas "
-					+ "\n---------------------\n"
-					+ "(6) Voltar");
-			
-			int operacao = s.nextInt();
-			
-			if(operacao == 6) {
-				executaAplicacao();
-				return;
-			}
-			
-			conexaoCliente.getConection("127.0.0.1", 80);
-			
-			switch (operacao) {
-				case 1: 
-					
-					System.out.println("Informe o CPF:");
-					cpf = s.next();
-					System.out.println("Informe o Nome:");
-					nome = s.next();
-					System.out.println("Informe o Endereco:");
-					endereco = s.next();
-					
-					comando = "INSERT;PESSOA;cpf="+cpf+";nome="+nome+";endereco="+endereco;
-					conexaoCliente.send(comando);
-					
-			  		break;
-			  
-				case 2: 
-					
-					System.out.println("Informe o CPF:");
-					cpf = s.next();
-					System.out.println("Informe o Nome:");
-					nome = s.next();
-					System.out.println("Informe o Endereco:");
-					endereco = s.next();
-					
-					comando = "UPDATE;PESSOA;cpf="+cpf+";nome="+nome+";endereco="+endereco;
-					conexaoCliente.send(comando);
-					
-					System.out.println(conexaoCliente.read());
-					
-					break;
-					
-				case 3:
-					
-					System.out.println("Informe o CPF:");
-					cpf = s.next();
-					
-					comando = "DELETE;PESSOA;cpf="+cpf;
-					conexaoCliente.send(comando);
-					
-					System.out.println(conexaoCliente.read());
-					
-					break;
-					
-				case 4:
-					
-					System.out.println("Informe o CPF:");
-					cpf = s.next();
-					
-					comando = "GET;PESSOA;cpf="+cpf;
-					conexaoCliente.send(comando);
-					
-					System.out.println(conexaoCliente.read());
-					
-					break;
-
-				case 5:
-					
-					comando = "LIST;PESSOA;";
-					conexaoCliente.send(comando);
-					
-					System.out.println(conexaoCliente.read());
-					
-					break;	
-					
-			}			
-			conexaoCliente.closeConnection();
-			
-		} while (true);
-	}
-
-	private static void executaTrapaceiro() {
+	private static void executaTrapaceiro(String ipHost) {
 		Scanner s = new Scanner(System.in);
 		
 		do {
@@ -306,19 +191,19 @@ public class ExecutavelCliente {
 					+ "(1) Inserir Trapaceiro \n"
 					+ "(2) Atualizar Trapaceiro \n"
 					+ "(3) Excluir Trapaceiro \n"
-					+ "(4) Carregar Trapaceiro \n"
-					+ "(5) Listar Trapaceiros "
+					+ "(4) Carregar Pessoa \n"
+					+ "(5) Listar Pessoas "
 					+ "\n---------------------\n"
 					+ "(6) Voltar");
 			
 			int operacao = s.nextInt();
 			
 			if(operacao == 6) {
-				executaAplicacao();
+				executaAplicacao(ipHost);
 				return;
 			}
 			
-			conexaoCliente.getConection("127.0.0.1", 80);
+			conexaoCliente.getConection(ipHost, 80);
 			
 			switch (operacao) {
 				case 1: 
@@ -394,7 +279,7 @@ public class ExecutavelCliente {
 		} while (true);
 	}
 	
-	private static void executaSaqueador() {
+	private static void executaSaqueador(String ipHost) {
 		Scanner s = new Scanner(System.in);
 		
 		do {
@@ -409,19 +294,19 @@ public class ExecutavelCliente {
 					+ "(1) Inserir Saqueador \n"
 					+ "(2) Atualizar Saqueador \n"
 					+ "(3) Excluir Saqueador \n"
-					+ "(4) Carregar Saqueador \n"
-					+ "(5) Listar Saqueadores "
+					+ "(4) Carregar Pessoa \n"
+					+ "(5) Listar Pessoas "
 					+ "\n---------------------\n"
 					+ "(6) Voltar");
 			
 			int operacao = s.nextInt();
 			
 			if(operacao == 6) {
-				executaAplicacao();
+				executaAplicacao(ipHost);
 				return;
 			}
 			
-			conexaoCliente.getConection("127.0.0.1", 80);
+			conexaoCliente.getConection(ipHost, 80);
 			
 			switch (operacao) {
 				case 1: 

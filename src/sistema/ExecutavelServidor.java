@@ -1,7 +1,7 @@
 package sistema;
-import sockets.ConexaoServidor;
-
 import java.io.IOException;
+
+import socket.ConexaoServidor;
 
 public class ExecutavelServidor {
 
