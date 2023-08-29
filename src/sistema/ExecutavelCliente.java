@@ -12,7 +12,7 @@ public class ExecutavelCliente {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Informe o IPV4 do servidor");
 		String ipHost = s.next();
-		System.out.println("Informe o porta do servidor");
+		System.out.println("Informe a porta do servidor");
 		int hostPort = s.nextInt();
 		
 		executaAplicacao(ipHost,hostPort);
