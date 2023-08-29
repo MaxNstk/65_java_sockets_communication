@@ -9,7 +9,7 @@ public class ExecutavelServidor {
     public static void main(String[] args) {
     	
     	Scanner s = new Scanner(System.in);
-    	System.out.println("Informe o Host do servidor");
+    	System.out.println("Informe a porta do servidor");
 		int hostPort = s.nextInt();
     	
         try {
