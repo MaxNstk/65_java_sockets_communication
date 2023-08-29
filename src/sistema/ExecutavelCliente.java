@@ -12,11 +12,13 @@ public class ExecutavelCliente {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Informe o IPV4 do servidor");
 		String ipHost = s.next();
+		System.out.println("Informe o Host do servidor");
+		int hostPort = s.nextInt();
 		
-		executaAplicacao(ipHost);
+		executaAplicacao(ipHost,hostPort);
 	}
 
-	private static void executaAplicacao(String ipHost) {
+	private static void executaAplicacao(String ipHost, int hostPort) {
 		
 		Scanner s = new Scanner(System.in);
 		System.out.println("Por favor, selecione uma opcao: \n"
@@ -31,20 +33,20 @@ public class ExecutavelCliente {
 		
 		switch (opcao) {
 			case 1: 
-				executaSaqueador(ipHost);
+				executaSaqueador(ipHost,hostPort);
 				break;
 			case 2:
-				executaTrapaceiro(ipHost);
+				executaTrapaceiro(ipHost,hostPort);
 				break;
 			case 3:
-				executaCorja(ipHost);
+				executaCorja(ipHost,hostPort);
 				break;
 			default:
 				return;
 		}
 	}
 
-	private static void executaCorja(String ipHost) {
+	private static void executaCorja(String ipHost, int hostPort) {
 		Scanner s = new Scanner(System.in);
 		
 		do {
@@ -72,11 +74,11 @@ public class ExecutavelCliente {
 			int operacao = s.nextInt();
 			
 			if(operacao == 8) {
-				executaAplicacao(ipHost);
+				executaAplicacao(ipHost,hostPort);
 				return;
 			}
 			
-			conexaoCliente.getConection(ipHost, 80);			
+			conexaoCliente.getConection(ipHost, hostPort);			
 			
 			switch (operacao) {
 				case 1: 
@@ -176,7 +178,7 @@ public class ExecutavelCliente {
 		} while (true);
 	}
 
-	private static void executaTrapaceiro(String ipHost) {
+	private static void executaTrapaceiro(String ipHost, int hostPort) {
 		Scanner s = new Scanner(System.in);
 		
 		do {
@@ -199,7 +201,7 @@ public class ExecutavelCliente {
 			int operacao = s.nextInt();
 			
 			if(operacao == 6) {
-				executaAplicacao(ipHost);
+				executaAplicacao(ipHost,hostPort);
 				return;
 			}
 			
@@ -279,7 +281,7 @@ public class ExecutavelCliente {
 		} while (true);
 	}
 	
-	private static void executaSaqueador(String ipHost) {
+	private static void executaSaqueador(String ipHost, int hostPort) {
 		Scanner s = new Scanner(System.in);
 		
 		do {
@@ -302,7 +304,7 @@ public class ExecutavelCliente {
 			int operacao = s.nextInt();
 			
 			if(operacao == 6) {
-				executaAplicacao(ipHost);
+				executaAplicacao(ipHost, hostPort);
 				return;
 			}
 			
