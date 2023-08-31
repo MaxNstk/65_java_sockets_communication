@@ -56,16 +56,18 @@ public class PessoaDao {
     	String endereco = mensagem[4].split("=")[1];
     	double valorSaqueado = Double.parseDouble(mensagem[5].split("=")[1]);
     	
-    	Saqueador saqueador = (Saqueador) pessoas.get(cpf);
-
-		if (saqueador == null)
-			return "Pessoa não encontrada!";
+    	Pessoa pessoa = pessoas.get(cpf);
+    	
+		if (pessoa == null || !pessoa.getClass().equals(Saqueador.class))
+			return "Saqueador não encontrado!";
+		
+    	Saqueador saqueador = (Saqueador) pessoa;
 		
 		saqueador.setNome(nome);
 		saqueador.setEndereco(endereco);
 		saqueador.setValorSaqueado(valorSaqueado);
 		
-		return "Pessoa atualizada com sucesso";
+		return "Saqueador atualizado com sucesso";
 	}
     
     public String updateTrapaceiro(String[] mensagem){
@@ -75,16 +77,18 @@ public class PessoaDao {
     	String endereco = mensagem[4].split("=")[1];
     	String habilidade = mensagem[5].split("=")[1];
     	
-    	Trapaceiro trapaceiro = (Trapaceiro) pessoas.get(cpf);
-
-		if (trapaceiro == null)
-			return "Pessoa não encontrada!";
+    	Pessoa pessoa = pessoas.get(cpf);
+    	
+		if (pessoa == null || !pessoa.getClass().equals(Trapaceiro.class))
+			return "Trapaceiro não encontrado!";
+    	
+    	Trapaceiro trapaceiro = (Trapaceiro) pessoa;
 		
 		trapaceiro.setNome(nome);
 		trapaceiro.setEndereco(endereco);
 		trapaceiro.setHabilidade(habilidade);
 		
-		return "Pessoa atualizada com sucesso";
+		return "Trapaceiro atualizado com sucesso";
 	}
     
     public String delete(String[] mensagem){
@@ -97,6 +101,7 @@ public class PessoaDao {
 			return "Pessoa não encontrada";
 		
 		pessoas.remove(cpf);
+				
 		return "Pessoa removida com sucesso";
 	}
     

@@ -17,7 +17,7 @@ public class ExecutavelServidor {
 		inserirDadosIniciais();
 		
         try {
-        	System.out.print("Aguardando conexões...");
+        	System.out.print("Aguardando conexoes...");
             ConexaoServidor.getInstance().getConnection(hostPort);
         } 
         catch (IOException e) {
